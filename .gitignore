@@ -1,0 +1,18 @@
+*.local
+*.env
+coverage/
+dist/
+node_modules/
+*.env
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+/test-results/
+/playwright-report/
+/playwright/.cache/
