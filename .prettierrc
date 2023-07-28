@@ -2,7 +2,6 @@
   "arrowParens": "always",
   "bracketSpacing": true,
   "endOfLine": "lf",
-  "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
   "singleAttributePerLine": false,
   "bracketSameLine": false,
@@ -16,9 +15,5 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "useTabs": false,
-  "embeddedLanguageFormatting": "auto",
-  "vueIndentScriptAndStyle": false,
-  "filepath": "/Users/kirstensolomon/Sites/projects/flash-cards/src/main.tsx",
-  "parser": "typescript"
+  "useTabs": false
 }
