@@ -4,20 +4,22 @@ import userEvent from "@testing-library/user-event";
 import Button from "./Button";
 
 describe("Button", () => {
-  test("It uses the given text and arialabel", () => {
+  test("It uses the given text, type, and arialabel", () => {
     render(
       <Button
         style="primary"
         text="Learn more"
+        type="submit"
         ariaLabel="Learn more about testing with buttons"
       />
     );
     const button = screen.getByRole("button");
     expect(button).toHaveTextContent("Learn more");
-    expect(screen.getByRole("button")).toHaveAttribute(
+    expect(button).toHaveAttribute(
       "aria-label",
       "Learn more about testing with buttons"
     );
+    expect(button).toHaveAttribute("type", "submit");
   });
 
   test("It uses the given click handler", async () => {
