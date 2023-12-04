@@ -1,6 +1,7 @@
 import "./FlashCard.css";
 
 import { useState } from "react";
+import Button from "../Button/Button";
 
 import { FlashCardType } from "@/types";
 
@@ -21,24 +22,22 @@ function FlashCard({ setTitle, card }: CardProps) {
         <div className="question" data-testid="question">
           <div className="header">{setTitle}</div>
           <p>{card.question}</p>
-          <button
-            className="btn primary"
+          <Button
+            style="primary"
             type="button"
-            onClick={() => setShowAnswer(true)}
-          >
-            Show answer
-          </button>
+            text="Show answer"
+            clickHandler={() => setShowAnswer(true)}
+          />
         </div>
         <div className="answer" data-testid="answer">
           <div className="header">{setTitle}</div>
           <p>{card.answer}</p>
-          <button
-            className="btn primary"
+          <Button
+            style="primary"
             type="button"
-            onClick={() => setShowAnswer(false)}
-          >
-            Show question
-          </button>
+            text="Show question"
+            clickHandler={() => setShowAnswer(false)}
+          />
         </div>
       </div>
     </div>
