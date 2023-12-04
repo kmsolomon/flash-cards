@@ -3,6 +3,12 @@
   perspective: 100vw;
 }
 
+@media (prefers-color-scheme: dark) {
+  .flash-card {
+    color: #fff;
+  }
+}
+
 .flash-card-inner {
   position: relative;
   width: 100%;
@@ -37,6 +43,13 @@
   backface-visibility: hidden;
   border-radius: var(--border-radius);
   box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
+}
+
+@media (prefers-color-scheme: dark) {
+  .question,
+  .answer {
+    background-color: #333;
+  }
 }
 
 .answer {

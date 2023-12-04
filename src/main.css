@@ -5,9 +5,16 @@
 }
 
 :root {
-  --border-radius: 4px;
+  --border-radius: 22px;
 }
 
 body {
   font-family: "Poppins", Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #fff;
+  }
 }

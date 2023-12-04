@@ -12,3 +12,5 @@ export interface CardList {
   cards: number[];
   createdBy?: string;
 }
+
+export type ButtonStyle = "primary" | "secondary" | "disabled" | "icon";
