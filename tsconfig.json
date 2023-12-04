@@ -27,5 +27,11 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "vitest.config.ts", "vite.config.ts", "tests/e2e"]
+  "include": [
+    "src",
+    "vitest.config.ts",
+    "test/vitest.setup.ts",
+    "vite.config.ts",
+    "tests/e2e"
+  ]
 }
