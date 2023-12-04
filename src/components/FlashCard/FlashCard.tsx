@@ -1,9 +1,10 @@
 import "./FlashCard.css";
 
 import { useState } from "react";
-import Button from "../Button/Button";
 
 import { FlashCardType } from "@/types";
+
+import Button from "../Button/Button";
 
 interface CardProps {
   setTitle: string;
