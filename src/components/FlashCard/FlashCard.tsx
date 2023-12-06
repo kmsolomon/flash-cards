@@ -7,11 +7,10 @@ import { FlashCardType } from "@/types";
 import Button from "../Button/Button";
 
 interface CardProps {
-  setTitle: string;
   card: FlashCardType;
 }
 
-function FlashCard({ setTitle, card }: CardProps) {
+function FlashCard({ card }: CardProps) {
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
 
   return (
@@ -21,7 +20,9 @@ function FlashCard({ setTitle, card }: CardProps) {
     >
       <div className="flash-card-inner">
         <div className="question" data-testid="question">
-          <div className="header">{setTitle}</div>
+          <div className="header">
+            <h2>Question</h2>
+          </div>
           <p>{card.question}</p>
           <Button
             style="primary"
@@ -31,7 +32,9 @@ function FlashCard({ setTitle, card }: CardProps) {
           />
         </div>
         <div className="answer" data-testid="answer">
-          <div className="header">{setTitle}</div>
+          <div className="header">
+            <h2>Answer</h2>
+          </div>
           <p>{card.answer}</p>
           <Button
             style="primary"

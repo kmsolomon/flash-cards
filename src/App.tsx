@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <h1>Hello world</h1>
-      <FlashCard setTitle="Practice" card={testCard} />
+      <FlashCard card={testCard} />
     </>
   );
 }

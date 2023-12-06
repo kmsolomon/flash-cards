@@ -13,15 +13,15 @@ const testCard: FlashCardType = {
 
 describe("FlashCard", () => {
   test("The card initially displays the given card set title and question", () => {
-    render(<FlashCard setTitle="Testing" card={testCard} />);
+    render(<FlashCard card={testCard} />);
     expect(screen.getByTestId("card")).not.toHaveClass("with-answer");
     const question = screen.getByTestId("question");
-    expect(within(question).getByText("Testing")).toBeInTheDocument();
+    expect(within(question).getByText("Question")).toBeInTheDocument();
     expect(within(question).getByText(testCard.question)).toBeInTheDocument();
   });
 
   test("The card has a show question/answer buttons", () => {
-    render(<FlashCard setTitle="Testing" card={testCard} />);
+    render(<FlashCard card={testCard} />);
     expect(
       screen.getByRole("button", { name: "Show answer" })
     ).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("FlashCard", () => {
 
   test("Clicking the show answer button and then the show question button results in the question being shown again", async () => {
     const user = userEvent.setup();
-    render(<FlashCard setTitle="Testing" card={testCard} />);
+    render(<FlashCard card={testCard} />);
     const card = screen.getByTestId("card");
     const answer = screen.getByTestId("answer");
     expect(card).not.toHaveClass("with-answer");
