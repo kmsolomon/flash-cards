@@ -10,16 +10,10 @@
 }
 
 .flash-card-inner {
-  position: relative;
-  width: 100%;
-  transition: transform 0.5s ease-in-out;
+  display: grid;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
   transform-style: preserve-3d;
-  display: flex;
-  align-items: stretch;
-}
-
-.flash-card.with-answer .flash-card-inner {
-  transform: rotateY(180deg);
 }
 
 .header {
@@ -35,7 +29,6 @@
 .question,
 .answer {
   background-color: #fff;
-  position: absolute;
   padding: 0 1rem 1rem 1rem;
   width: 100%;
   -moz-backface-visibility: hidden;
@@ -43,6 +36,8 @@
   backface-visibility: hidden;
   border-radius: var(--border-radius);
   box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
+  grid-row: 1/2;
+  grid-column: 1/2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -52,6 +47,14 @@
   }
 }
 
+.question {
+  transform: rotateY(0deg);
+}
+
 .answer {
+  transform: rotateY(-180deg);
+}
+
+.flash-card.with-answer .flash-card-inner {
   transform: rotateY(180deg);
 }
