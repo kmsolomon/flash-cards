@@ -1,6 +1,6 @@
 import "./FlashCard.css";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { FlashCardType } from "@/types";
 
@@ -12,6 +12,22 @@ interface CardProps {
 
 function FlashCard({ card }: CardProps) {
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
+  const questionRef = useRef<HTMLHeadingElement>(null);
+  const answerRef = useRef<HTMLHeadingElement>(null);
+
+  const handleShowQuestion = () => {
+    setShowAnswer(false);
+    if (questionRef.current !== null) {
+      questionRef.current.focus();
+    }
+  };
+
+  const handleShowAnswer = () => {
+    setShowAnswer(true);
+    if (answerRef.current !== null) {
+      answerRef.current.focus();
+    }
+  };
 
   return (
     <div
@@ -19,7 +35,12 @@ function FlashCard({ card }: CardProps) {
       data-testid="card"
     >
       <div className="flash-card-inner">
-        <div className="question" data-testid="question">
+        <div
+          ref={questionRef}
+          className="question"
+          tabIndex={-1}
+          data-testid="question"
+        >
           <div className="header">
             <h2>Question</h2>
           </div>
@@ -28,10 +49,15 @@ function FlashCard({ card }: CardProps) {
             style="primary"
             type="button"
             text="Show answer"
-            clickHandler={() => setShowAnswer(true)}
+            clickHandler={handleShowAnswer}
           />
         </div>
-        <div className="answer" data-testid="answer">
+        <div
+          ref={answerRef}
+          className="answer"
+          tabIndex={-1}
+          data-testid="answer"
+        >
           <div className="header">
             <h2>Answer</h2>
           </div>
@@ -40,7 +66,7 @@ function FlashCard({ card }: CardProps) {
             style="primary"
             type="button"
             text="Show question"
-            clickHandler={() => setShowAnswer(false)}
+            clickHandler={handleShowQuestion}
           />
         </div>
       </div>

@@ -34,12 +34,15 @@ describe("FlashCard", () => {
     const user = userEvent.setup();
     render(<FlashCard card={testCard} />);
     const card = screen.getByTestId("card");
+    const question = screen.getByTestId("question");
     const answer = screen.getByTestId("answer");
     expect(card).not.toHaveClass("with-answer");
     await user.click(screen.getByRole("button", { name: "Show answer" }));
     expect(card).toHaveClass("with-answer");
+    expect(answer).toHaveFocus();
     expect(within(answer).getByText(testCard.answer)).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Show question" }));
     expect(card).not.toHaveClass("with-answer");
+    expect(question).toHaveFocus();
   });
 });
