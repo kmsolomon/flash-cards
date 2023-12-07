@@ -6,6 +6,20 @@
   border-width: 2px;
   border-color: transparent;
   transition: background-color, border-color, 0.4s;
+  outline-offset: 2px;
+  outline: 2px solid transparent;
+}
+
+.btn:focus {
+  outline-offset: 2px;
+  outline: 2px solid;
+  outline-color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn:focus {
+    outline-color: #f2f2f2;
+  }
 }
 
 .primary {
@@ -14,8 +28,7 @@
 }
 
 .primary:hover,
-.primary:active,
-.primary:focus {
+.primary:active {
   background-color: #72c8fd;
   border-color: #72c8fd;
   color: #182e4e;
@@ -28,8 +41,7 @@
 }
 
 .secondary:hover,
-.secondary:active,
-.secondary:focus {
+.secondary:active {
   background-color: #333;
   border-color: #333;
   color: #fff;
@@ -43,24 +55,27 @@
   }
 
   .secondary:hover,
-  .secondary:active,
-  .secondary:focus {
+  .secondary:active {
     color: #fff;
     background-color: #111;
     border-color: #fff;
   }
 }
 
-.disabled {
-  background-color: #f2f2f2;
-  color: #4f4f4f;
-  cursor: not-allowed;
-}
-
 .icon {
   width: 2.5rem;
   height: 2.5rem;
+  padding: 0.25rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+button[disabled],
+button[disabled]:hover,
+button[disabled]:active {
+  background-color: #f2f2f2;
+  border-color: #f2f2f2;
+  color: #4f4f4f;
+  cursor: not-allowed;
 }

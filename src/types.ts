@@ -5,12 +5,14 @@ export interface FlashCardType {
   createdBy?: string;
 }
 
-export interface CardList {
+export interface CardSetType {
   id: string;
   title: string;
   description?: string;
-  cards: number[];
+  cards: string[];
   createdBy?: string;
 }
 
-export type ButtonStyle = "primary" | "secondary" | "disabled" | "icon";
+export type ButtonStyle = "primary" | "secondary" | "icon";
+
+export type ButtonIcon = "arrow-left" | "arrow-right";

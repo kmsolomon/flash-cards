@@ -40,12 +40,36 @@ describe("Button", () => {
   test("Button will be disabled if that style is selected", () => {
     render(
       <Button
-        style="disabled"
+        style="primary"
         text="Learn more"
         ariaLabel="Learn more about testing with buttons"
+        disabled={true}
       />
     );
     const button = screen.getByRole("button");
     expect(button).toBeDisabled();
+  });
+
+  test("Icon option of arrow-left will use a valid icon", () => {
+    render(
+      <Button
+        style="primary"
+        text="Previous question"
+        ariaLabel="Previous question"
+        icon="arrow-left"
+      />
+    );
+    const button = screen.getByRole("button");
+    expect(button).not.toHaveTextContent("Learn more");
+    expect(screen.getByTestId("icon-arrow-left")).toBeInTheDocument();
+  });
+
+  test("Icon option of arrow-right will use a valid icon", () => {
+    render(
+      <Button style="primary" ariaLabel="Next question" icon="arrow-right" />
+    );
+    const button = screen.getByRole("button");
+    expect(button).not.toHaveTextContent("Learn more");
+    expect(screen.getByTestId("icon-arrow-right")).toBeInTheDocument();
   });
 });
