@@ -15,13 +15,19 @@ function CardSet({ cardSet }: CardSetProps) {
   const [activeCard, setActiveCard] = useState<number>(0);
   const ref = useRef<HTMLDivElement>(null);
 
+  const focusQuestion = () => {
+    setTimeout(() => {
+      if (ref.current) {
+        ref.current.focus();
+      }
+    }, 10);
+  };
+
   const previousCard = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     if (activeCard !== 0) {
       setActiveCard(activeCard - 1);
-    }
-    if (ref.current) {
-      ref.current.focus();
+      focusQuestion();
     }
   };
 
@@ -29,9 +35,7 @@ function CardSet({ cardSet }: CardSetProps) {
     e.preventDefault();
     if (activeCard < cardSet.cards.length) {
       setActiveCard(activeCard + 1);
-    }
-    if (ref.current) {
-      ref.current.focus();
+      focusQuestion();
     }
   };
 
