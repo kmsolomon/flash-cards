@@ -8,10 +8,11 @@ import Button from "../Button/Button";
 
 interface CardProps {
   card: FlashCardType;
+  numOf?: string;
 }
-
+//TODO -- fix so the button that's not visible doesn't get tab focus!
 const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
-  { card }: CardProps,
+  { card, numOf }: CardProps,
   ref
 ) {
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
@@ -47,7 +48,7 @@ const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
           data-testid="question"
         >
           <div className="header">
-            <h2>Question</h2>
+            <h2>Question {numOf ? numOf : null}</h2>
           </div>
           <p>{card.question}</p>
           <Button
@@ -64,7 +65,7 @@ const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
           data-testid="answer"
         >
           <div className="header">
-            <h2>Answer</h2>
+            <h2>Answer {numOf ? numOf : null}</h2>
           </div>
           <p>{card.answer}</p>
           <Button

@@ -20,6 +20,13 @@ describe("FlashCard", () => {
     expect(within(question).getByText(testCard.question)).toBeInTheDocument();
   });
 
+  test("If provided, the numOf text is displayed", () => {
+    render(<FlashCard card={testCard} numOf="1 of 4" />);
+    expect(screen.getByTestId("card")).not.toHaveClass("with-answer");
+    const question = screen.getByTestId("question");
+    expect(within(question).getByText("Question 1 of 4")).toBeInTheDocument();
+  });
+
   test("The card has a show question/answer buttons", () => {
     render(<FlashCard card={testCard} />);
     expect(
