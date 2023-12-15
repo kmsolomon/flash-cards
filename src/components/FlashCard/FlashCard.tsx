@@ -10,7 +10,7 @@ interface CardProps {
   card: FlashCardType;
   numOf?: string;
 }
-//TODO -- fix so the button that's not visible doesn't get tab focus!
+
 const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
   { card, numOf }: CardProps,
   ref
@@ -55,6 +55,7 @@ const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
             style="primary"
             type="button"
             text="Show answer"
+            disabled={showAnswer}
             clickHandler={handleShowAnswer}
           />
         </div>
@@ -72,6 +73,7 @@ const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
             style="primary"
             type="button"
             text="Show question"
+            disabled={!showAnswer}
             clickHandler={handleShowQuestion}
           />
         </div>

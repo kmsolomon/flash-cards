@@ -58,3 +58,11 @@
 .flash-card.with-answer .flash-card-inner {
   transform: rotateY(180deg);
 }
+
+/** 
+Not ideal, but since the disabled button within the flash card is never displayed, 
+and don't want to confuse the user when the card flips, setting the cursor here 
+**/
+.flash-card button[disabled] {
+  cursor: initial;
+}
