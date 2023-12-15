@@ -9,7 +9,7 @@ export interface CardSetType {
   id: string;
   title: string;
   description?: string;
-  cards: string[];
+  cards: FlashCardType[];
   createdBy?: string;
 }
 

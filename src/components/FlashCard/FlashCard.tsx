@@ -1,6 +1,6 @@
 import "./FlashCard.css";
 
-import { useRef, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
 import { FlashCardType } from "@/types";
 
@@ -10,10 +10,13 @@ interface CardProps {
   card: FlashCardType;
 }
 
-function FlashCard({ card }: CardProps) {
+const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
+  { card }: CardProps,
+  ref
+) {
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
-  const questionRef = useRef<HTMLHeadingElement>(null);
-  const answerRef = useRef<HTMLHeadingElement>(null);
+  const questionRef = useRef<HTMLDivElement>(null);
+  const answerRef = useRef<HTMLDivElement>(null);
 
   const handleShowQuestion = () => {
     setShowAnswer(false);
@@ -28,6 +31,8 @@ function FlashCard({ card }: CardProps) {
       answerRef.current.focus();
     }
   };
+
+  useImperativeHandle(ref, () => questionRef.current!, []);
 
   return (
     <div
@@ -72,6 +77,6 @@ function FlashCard({ card }: CardProps) {
       </div>
     </div>
   );
-}
+});
 
 export default FlashCard;
