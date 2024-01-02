@@ -1,0 +1,64 @@
+{
+  "sets": [
+    {
+      "id": "a123",
+      "title": "Learning 1",
+      "description": "A set of practice questions",
+      "cards": ["1234a", "1234b", "1234c"]
+    },
+    {
+      "id": "b123",
+      "title": "Random questions",
+      "cards": ["2234d", "2234e"]
+    },
+    {
+      "id": "c123",
+      "title": "Questions for testing",
+      "cards": ["2234e", "3234f", "3234g"]
+    },
+    {
+      "id": "d123",
+      "title": "Everything",
+      "description": "Alllllll the questions",
+      "cards": ["1234a", "1234b", "1234c", "2234d", "2234e", "3234f", "3234g"],
+      "createdBy": "aaaa"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "1234a",
+      "question": "What is this project built with?",
+      "answer": "React!"
+    },
+    {
+      "id": "1234b",
+      "question": "What is the difference between == and ===?",
+      "answer": "=== checks for strict equality. == compares for equality after doing type conversions, === does not do type conversions."
+    },
+    {
+      "id": "1234c",
+      "question": "What does the await keyword mean?",
+      "answer": "It tells JavaScript to wait for an asynchronous action to finish before continuing the function. Can think of it like a pause until done keyword."
+    },
+    {
+      "id": "2234d",
+      "question": "What does the fox say?",
+      "answer": "Ring-ding-ding-ding-ding-dingeringeding"
+    },
+    {
+      "id": "2234e",
+      "question": "Question?",
+      "answer": "Answer!"
+    },
+    {
+      "id": "3234f",
+      "question": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero enim maiores magni sit et ratione, at distinctio exercitationem quibusdam quisquam, quo atque minus quia nostrum nobis voluptatem blanditiis, fugiat incidunt.",
+      "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero enim maiores magni sit et ratione, at distinctio exercitationem quibusdam quisquam, quo atque minus quia nostrum nobis voluptatem blanditiis, fugiat incidunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero enim maiores magni sit et ratione, at distinctio exercitationem quibusdam quisquam, quo atque minus quia nostrum nobis voluptatem blanditiis, fugiat incidunt."
+    },
+    {
+      "id": "3234g",
+      "question": "Very short question?",
+      "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero enim maiores magni sit et ratione, at distinctio exercitationem quibusdam quisquam, quo atque minus quia nostrum nobis voluptatem blanditiis, fugiat incidunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero enim maiores magni sit et ratione, at distinctio exercitationem quibusdam quisquam, quo atque minus quia nostrum nobis voluptatem blanditiis, fugiat incidunt."
+    }
+  ]
+}

@@ -13,6 +13,10 @@ export interface CardSetType {
   createdBy?: string;
 }
 
+export interface CompactCardSetType extends Omit<CardSetType, "cards"> {
+  cards: string[];
+}
+
 export type ButtonStyle = "primary" | "secondary" | "icon";
 
 export type ButtonIcon = "arrow-left" | "arrow-right";
