@@ -2,6 +2,7 @@
 ::before,
 ::after {
   box-sizing: border-box;
+  margin: 0;
 }
 
 :root {
@@ -11,6 +12,17 @@
 body {
   font-family: "Poppins", Arial, sans-serif;
   color: #222;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  margin: 1rem 0.5rem;
+  flex: 1;
 }
 
 @media (prefers-color-scheme: dark) {

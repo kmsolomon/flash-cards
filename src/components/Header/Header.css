@@ -1,0 +1,8 @@
+header {
+  padding: 1rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
+  background: #fee44e;
+  background: linear-gradient(327deg, #4ec4d1 0%, #fee44e 56%);
+}
