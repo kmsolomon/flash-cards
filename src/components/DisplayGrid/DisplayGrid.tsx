@@ -1,12 +1,11 @@
 import "./DisplayGrid.css";
 
+import { useLoaderData } from "react-router-dom";
+
 import { CompactCardSetType } from "@/types";
 
-interface DisplayGridProps {
-  items: CompactCardSetType[];
-}
-
-function DisplayGrid({ items }: DisplayGridProps) {
+function DisplayGrid() {
+  const items = useLoaderData() as CompactCardSetType[];
   return (
     <div className="display-grid" data-testid="display-grid">
       {items && items.length > 0
@@ -15,10 +14,10 @@ function DisplayGrid({ items }: DisplayGridProps) {
               <div className="header">
                 <h2>{element.title}</h2>
               </div>
-              {element.description ? <div>{element.description}</div> : null}
-              <div className="total-cards">{`${element.cards.length} ${
-                element.cards.length === 1 ? "card" : "cards"
+              <div className="total-cards">{`${element.cards} ${
+                element.cards === 1 ? "card" : "cards"
               }`}</div>
+              {element.description ? <div>{element.description}</div> : null}
             </div>
           ))
         : "There are no items to display."}

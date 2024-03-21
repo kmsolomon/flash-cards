@@ -40,3 +40,7 @@
 .display-grid-card:nth-child(5n + 5) .header {
   background-color: #d898ec;
 }
+
+.display-grid-card .total-cards {
+  font-weight: 600;
+}

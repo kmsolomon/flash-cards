@@ -14,7 +14,7 @@ export interface CardSetType {
 }
 
 export interface CompactCardSetType extends Omit<CardSetType, "cards"> {
-  cards: string[];
+  cards: number;
 }
 
 export type ButtonStyle = "primary" | "secondary" | "icon";
