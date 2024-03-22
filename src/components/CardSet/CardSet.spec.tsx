@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
 import CardSet from "./CardSet";
 
@@ -7,7 +8,7 @@ const testSet = {
   id: "test123",
   title: "Intro to JS",
   description: "Beginner JavaScript questions.",
-  cards: [
+  flashcards: [
     {
       id: "1234a",
       question: "What is this project built with?",
@@ -31,34 +32,91 @@ const testSet = {
 };
 
 describe("CardSet", () => {
-  test("The card set title is displayed", () => {
-    render(<CardSet cardSet={testSet} />);
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      testSet.title
+  test("The card set title is displayed", async () => {
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/set/:id",
+          element: <CardSet />,
+          loader: async () => {
+            return testSet;
+          },
+        },
+      ],
+      { initialEntries: [`/set/${testSet.id}`] }
     );
+    render(<RouterProvider router={router} />);
+    const header = await screen.findByRole("heading", { level: 1 });
+    expect(header).toHaveTextContent(testSet.title);
   });
 
-  test("When a card set has no cards the empty set text is displayed", () => {
-    const noCards = { ...testSet, cards: [] };
-    render(<CardSet cardSet={noCards} />);
+  test("When a card set has no cards the empty set text is displayed and there should not be buttons to navigate between cards", async () => {
+    const noCards = { ...testSet, flashcards: [] };
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/set/:id",
+          element: <CardSet />,
+          loader: async () => {
+            return noCards;
+          },
+        },
+      ],
+      { initialEntries: [`/set/${testSet.id}`] }
+    );
+    render(<RouterProvider router={router} />);
+    await screen.findByRole("heading", { level: 1 });
     expect(
       within(screen.getByTestId("card-container")).getByText(
         "There are currently no flash cards for this set"
       )
     ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Previous quetion" })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Next quetion" })
+    ).not.toBeInTheDocument();
   });
 
-  test("When a card set has cards the first card is displayed initially", () => {
-    render(<CardSet cardSet={testSet} />);
+  test("When a card set has cards the first card is displayed initially", async () => {
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/set/:id",
+          element: <CardSet />,
+          loader: async () => {
+            return testSet;
+          },
+        },
+      ],
+      { initialEntries: [`/set/${testSet.id}`] }
+    );
+    render(<RouterProvider router={router} />);
+    await screen.findByRole("heading", { level: 1 });
     const cardContainer = screen.getByTestId("card-container");
     expect(
-      within(cardContainer).getByText(testSet.cards[0].question)
+      within(cardContainer).getByText(testSet.flashcards[0].question)
     ).toBeInTheDocument();
   });
 
   test("The card set has buttons to switch to the next and previous cards", async () => {
     const user = userEvent.setup();
-    render(<CardSet cardSet={testSet} />);
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/set/:id",
+          element: <CardSet />,
+          loader: async () => {
+            return testSet;
+          },
+        },
+      ],
+      { initialEntries: [`/set/${testSet.id}`] }
+    );
+    render(<RouterProvider router={router} />);
+
+    await screen.findByRole("heading", { level: 1 });
     const previousBtn = screen.getByRole("button", {
       name: "Previous question",
     });
@@ -68,16 +126,16 @@ describe("CardSet", () => {
     expect(nextBtn).toBeInTheDocument();
     await user.click(nextBtn);
     expect(
-      within(cardContainer).getByText(testSet.cards[1].question)
+      within(cardContainer).getByText(testSet.flashcards[1].question)
     ).toBeInTheDocument();
     await user.click(nextBtn);
     expect(
-      within(cardContainer).getByText(testSet.cards[2].question)
+      within(cardContainer).getByText(testSet.flashcards[2].question)
     ).toBeInTheDocument();
     expect(nextBtn).toBeDisabled();
     await user.click(previousBtn);
     expect(
-      within(cardContainer).getByText(testSet.cards[1].question)
+      within(cardContainer).getByText(testSet.flashcards[1].question)
     ).toBeInTheDocument();
     expect(previousBtn).toBeEnabled();
     expect(nextBtn).toBeEnabled();

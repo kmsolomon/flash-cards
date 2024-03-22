@@ -1,4 +1,4 @@
-import { CompactCardSetType } from "@/types";
+import { CardSetType, CompactCardSetType } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -14,4 +14,16 @@ const getAll = async (): Promise<CompactCardSetType[]> => {
   }
 };
 
-export { getAll };
+const getOne = async (id: string): Promise<CardSetType> => {
+  try {
+    const response = await fetch(`${BASE_URL}/cardset/${id}`);
+    const data: CardSetType = await response.json();
+
+    return data;
+  } catch (error) {
+    // TODO
+    throw new Error("Something went wrong");
+  }
+};
+
+export { getAll, getOne };

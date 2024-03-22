@@ -9,11 +9,11 @@ export interface CardSetType {
   id: string;
   title: string;
   description?: string;
-  cards: FlashCardType[];
+  flashcards: FlashCardType[];
   createdBy?: string;
 }
 
-export interface CompactCardSetType extends Omit<CardSetType, "cards"> {
+export interface CompactCardSetType extends Omit<CardSetType, "flashcards"> {
   cards: number;
 }
 
