@@ -44,3 +44,13 @@
 .display-grid-card .total-cards {
   font-weight: 600;
 }
+
+.header a {
+  color: #222;
+  text-underline-offset: 0.25rem;
+  text-decoration-style: dotted;
+}
+
+.header a:hover {
+  text-decoration-style: solid;
+}

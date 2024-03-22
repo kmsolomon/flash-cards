@@ -88,4 +88,28 @@ describe("DisplayGrid", () => {
       within(grid).getByText("There are no items to display.")
     ).toBeInTheDocument();
   });
+
+  test("The grid card includes a link to the page for that set", async () => {
+    const TESTDATA: CompactCardSetType[] = testData;
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/",
+          element: <DisplayGrid />,
+          loader: async () => {
+            return TESTDATA;
+          },
+        },
+      ],
+      { initialEntries: ["/"] }
+    );
+
+    render(<RouterProvider router={router} />);
+
+    const grid = await screen.findByTestId("display-grid");
+    expect(grid).toBeInTheDocument();
+    expect(
+      within(grid).getByRole("link", { name: testData[0].title })
+    ).toBeInTheDocument();
+  });
 });
