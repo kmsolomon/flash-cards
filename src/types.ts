@@ -17,6 +17,8 @@ export interface CompactCardSetType extends Omit<CardSetType, "flashcards"> {
   cards: number;
 }
 
+export type NewCardSetType = Omit<CardSetType, "id">;
+
 export type ButtonStyle = "primary" | "secondary" | "icon";
 
 export type ButtonIcon = "arrow-left" | "arrow-right";

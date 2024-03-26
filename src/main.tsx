@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import CardSet from "./components/CardSet/CardSet";
+import CreateCardSet from "./components/CreateCardSet/CreateCardSet";
 import DisplayGrid from "./components/DisplayGrid/DisplayGrid";
 import { allCardsetsLoader, singleCardsetLoader } from "./routes/root";
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         path: "/set/:id",
         element: <CardSet />,
         loader: singleCardsetLoader,
+      },
+      {
+        path: "/set/create",
+        element: <CreateCardSet />,
       },
     ],
   },
