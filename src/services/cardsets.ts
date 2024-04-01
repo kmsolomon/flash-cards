@@ -44,4 +44,24 @@ const create = async (newCard: NewCardSetType): Promise<CardSetType> => {
   }
 };
 
-export { create, getAll, getOne };
+const update = async (
+  id: string,
+  updates: Partial<CardSetType>
+): Promise<CardSetType> => {
+  try {
+    const response = await fetch(`${BASE_URL}/cardset/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updates),
+    });
+    const data: CardSetType = await response.json();
+
+    return data;
+  } catch (error) {
+    throw new Error("Something went wrong");
+  }
+};
+
+export { create, getAll, getOne, update };
