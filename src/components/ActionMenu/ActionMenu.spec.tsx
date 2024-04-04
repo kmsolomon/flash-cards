@@ -86,4 +86,28 @@ describe("ActionMenu", () => {
 
     expect(testOptions[1].action).toBeCalledTimes(1);
   });
+
+  it("Should close the menu if the user clicks outside of it", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <div>
+        <div data-testid="foo">Hello world</div>
+        <ActionMenu buttonLabel="Test!" menuOptions={[]} />
+      </div>
+    );
+
+    const menuBtn = screen.getByRole("button", { name: "Test!" });
+    const menu = screen.getByRole("menu");
+
+    await user.click(menuBtn);
+
+    expect(menuBtn).toHaveAttribute("aria-expanded", "true");
+    expect(menu).toHaveClass("show");
+
+    await user.click(screen.getByTestId("foo"));
+
+    expect(menuBtn).toHaveAttribute("aria-expanded", "false");
+    expect(menu).toHaveClass("hide");
+  });
 });

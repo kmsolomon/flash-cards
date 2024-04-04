@@ -1,0 +1,30 @@
+.action-menu ul {
+  list-style: none;
+  margin: 4px 0 0 0;
+  padding: 0;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
+  position: absolute;
+  z-index: 101;
+  min-width: 200px;
+}
+
+.action-menu li {
+  padding: 0.3rem 1rem;
+}
+
+.action-menu li:first-of-type {
+  padding-top: 0.5rem;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.action-menu li:last-of-type {
+  padding-bottom: 0.5rem;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.action-menu li:hover,
+.action-menu li:focus {
+  background-color: #fee44e;
+}
