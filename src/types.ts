@@ -22,3 +22,8 @@ export type NewCardSetType = Omit<CardSetType, "id">;
 export type ButtonStyle = "primary" | "secondary" | "icon";
 
 export type ButtonIcon = "arrow-left" | "arrow-right";
+
+export type MenuOptionItems = {
+  name: string;
+  action: () => void;
+};

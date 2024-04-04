@@ -70,7 +70,7 @@ function ActionMenu({
         buttonRef.current.focus();
       }
       setMenuExpanded(false);
-    } else if (e.key === "Enter") {
+    } else if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
       menuOptions[i].action();
     } else {
       // Ideally would also implement the a-z case, but leaving that as a TODO
@@ -122,6 +122,8 @@ function ActionMenu({
   const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     switch (e.key) {
       case "Tab":
+      case "Esc":
+      case "Escape":
         setMenuExpanded(false);
         break;
       case "ArrowUp":
