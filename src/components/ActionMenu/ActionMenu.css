@@ -6,7 +6,6 @@
   border-radius: var(--border-radius);
   box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
   position: absolute;
-  z-index: 101;
   min-width: 200px;
 }
 
