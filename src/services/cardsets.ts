@@ -64,4 +64,14 @@ const update = async (
   }
 };
 
-export { create, getAll, getOne, update };
+const deleteSet = async (id: string): Promise<void> => {
+  try {
+    await fetch(`${BASE_URL}/cardset/${id}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    throw new Error("Something went wrong");
+  }
+};
+
+export { create, deleteSet, getAll, getOne, update };

@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         loader: singleCardsetLoader,
       },
       {
-        path: "/set/:id/quiz",
+        path: "/set/:id/cards",
         element: <CardSet />,
         loader: singleCardsetLoader,
       },
