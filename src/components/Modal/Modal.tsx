@@ -10,12 +10,14 @@ interface Props {
 
 function Modal({ children, isOpen, setModalOpen }: Props) {
   ReactModal.setAppElement("#root");
+
   return (
     <ReactModal
       isOpen={isOpen}
       shouldCloseOnOverlayClick={true}
       className="modal"
       overlayClassName="overlay"
+      ariaHideApp={import.meta.env.MODE !== "test"}
       onRequestClose={() => setModalOpen(false)}
     >
       {children}
