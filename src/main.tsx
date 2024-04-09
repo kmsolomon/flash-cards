@@ -8,6 +8,9 @@ import CardSetOverview from "./components/CardSet/CardSetOverview/CardSetOvervie
 import EditCardSet from "./components/CardSet/EditCardSet/EditCardSet";
 import CreateCardSet from "./components/CreateCardSet/CreateCardSet";
 import DisplayGrid from "./components/DisplayGrid/DisplayGrid";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import ErrorPage from "./ErrorPage";
 import { allCardsetsLoader, singleCardsetLoader } from "./routes/root";
 
 const container = document.getElementById("root");
@@ -17,30 +20,44 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: (
+      <>
+        <Header />
+        <main>
+          <ErrorPage />
+        </main>
+        <Footer />
+      </>
+    ),
     children: [
       {
-        path: "/",
-        element: <DisplayGrid />,
-        loader: allCardsetsLoader,
-      },
-      {
-        path: "/set/:id/edit",
-        element: <EditCardSet />,
-        loader: singleCardsetLoader,
-      },
-      {
-        path: "/set/:id/cards",
-        element: <CardSet />,
-        loader: singleCardsetLoader,
-      },
-      {
-        path: "/set/:id",
-        element: <CardSetOverview />,
-        loader: singleCardsetLoader,
-      },
-      {
-        path: "/set/create",
-        element: <CreateCardSet />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: "/",
+            element: <DisplayGrid />,
+            loader: allCardsetsLoader,
+          },
+          {
+            path: "/set/:id/edit",
+            element: <EditCardSet />,
+            loader: singleCardsetLoader,
+          },
+          {
+            path: "/set/:id/cards",
+            element: <CardSet />,
+            loader: singleCardsetLoader,
+          },
+          {
+            path: "/set/:id",
+            element: <CardSetOverview />,
+            loader: singleCardsetLoader,
+          },
+          {
+            path: "/set/create",
+            element: <CreateCardSet />,
+          },
+        ],
       },
     ],
   },
