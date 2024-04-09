@@ -72,6 +72,9 @@ function CardSet() {
           />
         </div>
       ) : null}
+      <div>
+        <a href={`/set/${cardSet.id}`}>Return to set overview</a>
+      </div>
     </div>
   );
 }

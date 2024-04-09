@@ -55,14 +55,14 @@ describe("CardSet", () => {
     const router = createMemoryRouter(
       [
         {
-          path: "/set/:id",
+          path: "/set/:id/cards",
           element: <CardSet />,
           loader: async () => {
             return noCards;
           },
         },
       ],
-      { initialEntries: [`/set/${testSet.id}`] }
+      { initialEntries: [`/set/${testSet.id}/cards`] }
     );
     render(<RouterProvider router={router} />);
     await screen.findByRole("heading", { level: 1 });
@@ -83,14 +83,14 @@ describe("CardSet", () => {
     const router = createMemoryRouter(
       [
         {
-          path: "/set/:id",
+          path: "/set/:id/cards",
           element: <CardSet />,
           loader: async () => {
             return testSet;
           },
         },
       ],
-      { initialEntries: [`/set/${testSet.id}`] }
+      { initialEntries: [`/set/${testSet.id}/cards`] }
     );
     render(<RouterProvider router={router} />);
     await screen.findByRole("heading", { level: 1 });
@@ -105,14 +105,14 @@ describe("CardSet", () => {
     const router = createMemoryRouter(
       [
         {
-          path: "/set/:id",
+          path: "/set/:id/cards",
           element: <CardSet />,
           loader: async () => {
             return testSet;
           },
         },
       ],
-      { initialEntries: [`/set/${testSet.id}`] }
+      { initialEntries: [`/set/${testSet.id}/cards`] }
     );
     render(<RouterProvider router={router} />);
 
@@ -139,5 +139,25 @@ describe("CardSet", () => {
     ).toBeInTheDocument();
     expect(previousBtn).toBeEnabled();
     expect(nextBtn).toBeEnabled();
+  });
+
+  test("Should have a link to return to the set overview", async () => {
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/set/:id/cards",
+          element: <CardSet />,
+          loader: async () => {
+            return testSet;
+          },
+        },
+      ],
+      { initialEntries: [`/set/${testSet.id}/cards`] }
+    );
+    render(<RouterProvider router={router} />);
+    await screen.findByRole("heading", { level: 1 });
+    expect(
+      screen.getByRole("link", { name: /return to set overview/i })
+    ).toBeInTheDocument();
   });
 });
