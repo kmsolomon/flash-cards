@@ -66,7 +66,7 @@ function EditCardSet() {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-    console.log("todo");
+
     if (isValidTitle()) {
       try {
         const updates: Partial<CardSetType> = {};
