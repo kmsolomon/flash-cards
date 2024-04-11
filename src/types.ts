@@ -3,6 +3,7 @@ export interface FlashCardType {
   question: string;
   answer: string;
   createdBy?: string;
+  cardsetId: string;
 }
 
 export interface CardSetType {
@@ -18,6 +19,8 @@ export interface CompactCardSetType extends Omit<CardSetType, "flashcards"> {
 }
 
 export type NewCardSetType = Omit<CardSetType, "id">;
+
+export type NewFlashCardType = Omit<FlashCardType, "id">;
 
 export type ButtonStyle = "primary" | "secondary" | "icon";
 
