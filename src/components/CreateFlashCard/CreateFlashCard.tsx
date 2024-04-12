@@ -68,13 +68,13 @@ function CreateFlashCard() {
 
     if (allInputsValid() && id) {
       try {
-        const response = await createFlashCard({
+        await createFlashCard({
           question,
           answer,
           cardsetId: id,
         });
 
-        navigate(`/set/${id}/card/${response.id}`);
+        navigate(`/set/${id}`);
       } catch (error) {
         console.error("something went wrong");
       }
