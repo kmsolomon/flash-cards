@@ -68,8 +68,10 @@ function CardSetOverview() {
                 <li key={card.id}>
                   <div>{card.question}</div>
                   <div>
-                    <a href={`/set/${cardSet.id}/card/${card.id}/edit`}>Edit</a>
-                    <a href={`/set/${cardSet.id}/card/${card.id}/edit`}>
+                    <a href={`/set/${cardSet.id}/cards/${card.id}/edit`}>
+                      Edit
+                    </a>
+                    <a href={`/set/${cardSet.id}/cards/${card.id}/edit`}>
                       Delete
                     </a>
                   </div>

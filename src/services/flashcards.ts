@@ -21,4 +21,37 @@ const createFlashCard = async (
   return data;
 };
 
-export { createFlashCard };
+const getFlashCard = async (
+  setId: string,
+  cardId: string
+): Promise<FlashCardType> => {
+  const response = await fetch(
+    `${BASE_URL}/cardset/${setId}/flashcard/${cardId}`
+  );
+
+  const data: FlashCardType = await response.json();
+
+  return data;
+};
+
+const updateFlashCard = async (
+  setId: string,
+  cardId: string,
+  updates: Partial<FlashCardType>
+): Promise<FlashCardType> => {
+  const response = await fetch(
+    `${BASE_URL}/cardset/${setId}/flashcard/${cardId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updates),
+    }
+  );
+  const data: FlashCardType = await response.json();
+
+  return data;
+};
+
+export { createFlashCard, getFlashCard, updateFlashCard };
