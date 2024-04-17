@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
 
 import ActionMenu from "@/components/ActionMenu/ActionMenu";
 import Button from "@/components/Button/Button";
 import Modal from "@/components/Modal/Modal";
 import { deleteSet } from "@/services/cardsets";
+import { deleteFlashCard } from "@/services/flashcards";
 import { CardSetType, MenuOptionItems } from "@/types";
 
 function CardSetOverview() {
   const cardSet = useLoaderData() as CardSetType;
   const navigate = useNavigate();
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const revalidator = useRevalidator();
+  const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
+  const [flashCardDeleteModalOpen, setFlashCardDeleteModalOpen] =
+    useState<boolean>(false);
+  const [selectedCardId, setSelectedCardId] = useState<string>("");
   const menuOptions: MenuOptionItems[] = [
     {
       name: "Edit",
@@ -36,6 +41,26 @@ function CardSetOverview() {
         err
       );
     }
+  };
+
+  const handleFlashCardDelete = async () => {
+    try {
+      await deleteFlashCard(cardSet.id, selectedCardId);
+      setSelectedCardId("");
+      // TODO need to add success message on the page and probably make sure focus is moved to that after card deleted
+      setFlashCardDeleteModalOpen(false);
+      revalidator.revalidate();
+    } catch (err) {
+      console.error(
+        "Something went wrong while trying to delete this flash card.",
+        err
+      );
+    }
+  };
+
+  const cancelFlashCardDelete = () => {
+    setSelectedCardId("");
+    setFlashCardDeleteModalOpen(false);
   };
 
   return (
@@ -64,16 +89,29 @@ function CardSetOverview() {
         <div>
           {cardSet.flashcards.length > 0 ? (
             <ul>
-              {cardSet.flashcards.map((card) => (
+              {cardSet.flashcards.map((card, index) => (
                 <li key={card.id}>
                   <div>{card.question}</div>
                   <div>
-                    <a href={`/set/${cardSet.id}/cards/${card.id}/edit`}>
-                      Edit
-                    </a>
-                    <a href={`/set/${cardSet.id}/cards/${card.id}/edit`}>
-                      Delete
-                    </a>
+                    <Button
+                      type="button"
+                      style="small-icon"
+                      icon="edit"
+                      ariaLabel={`Edit card ${index + 1}`}
+                      clickHandler={() => {
+                        navigate(`/set/${cardSet.id}/cards/${card.id}/edit`);
+                      }}
+                    />
+                    <Button
+                      type="button"
+                      style="small-icon"
+                      icon="delete"
+                      ariaLabel={`Delete card ${index + 1}`}
+                      clickHandler={() => {
+                        setSelectedCardId(card.id);
+                        setFlashCardDeleteModalOpen(true);
+                      }}
+                    />
                   </div>
                 </li>
               ))}{" "}
@@ -83,7 +121,11 @@ function CardSetOverview() {
           )}
         </div>
       </div>
-      <Modal isOpen={deleteModalOpen} setModalOpen={setDeleteModalOpen}>
+      <Modal
+        id="test1"
+        isOpen={deleteModalOpen}
+        setModalOpen={setDeleteModalOpen}
+      >
         <div className="modal-content">
           Deleting the set &quot;{cardSet.title}&quot; will also delete all
           associated flash cards. Are you sure you want to delete this set?
@@ -101,6 +143,30 @@ function CardSetOverview() {
             type="button"
             text="Cancel"
             clickHandler={() => setDeleteModalOpen(false)}
+          />
+        </div>
+      </Modal>
+      <Modal
+        id="test2"
+        isOpen={flashCardDeleteModalOpen}
+        setModalOpen={setFlashCardDeleteModalOpen}
+      >
+        <div className="modal-content">
+          Are you sure you want to delete this flash card?
+        </div>
+
+        <div className="button-wrapper">
+          <Button
+            type="button"
+            style="primary"
+            text="Delete"
+            clickHandler={handleFlashCardDelete}
+          />
+          <Button
+            style="secondary"
+            type="button"
+            text="Cancel"
+            clickHandler={cancelFlashCardDelete}
           />
         </div>
       </Modal>

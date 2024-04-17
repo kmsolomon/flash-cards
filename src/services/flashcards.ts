@@ -54,4 +54,15 @@ const updateFlashCard = async (
   return data;
 };
 
-export { createFlashCard, getFlashCard, updateFlashCard };
+const deleteFlashCard = async (setId: string, cardId: string) => {
+  const response = await fetch(
+    `${BASE_URL}/cardset/${setId}/flashcard/${cardId}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  return response;
+};
+
+export { createFlashCard, deleteFlashCard, getFlashCard, updateFlashCard };

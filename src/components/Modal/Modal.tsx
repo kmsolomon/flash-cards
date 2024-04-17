@@ -4,15 +4,17 @@ import ReactModal from "react-modal";
 
 interface Props {
   children: React.ReactNode;
+  id: string;
   isOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Modal({ children, isOpen, setModalOpen }: Props) {
+function Modal({ children, id, isOpen, setModalOpen }: Props) {
   ReactModal.setAppElement("#root");
 
   return (
     <ReactModal
+      id={id}
       isOpen={isOpen}
       shouldCloseOnOverlayClick={true}
       className="modal"
