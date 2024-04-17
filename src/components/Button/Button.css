@@ -71,6 +71,16 @@
   justify-content: center;
 }
 
+.small-icon {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-less-round);
+}
+
 button[disabled],
 button[disabled]:hover,
 button[disabled]:active {

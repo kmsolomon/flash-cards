@@ -7,6 +7,7 @@
 
 :root {
   --border-radius: 22px;
+  --border-radius-less-round: 8px;
 }
 
 body {

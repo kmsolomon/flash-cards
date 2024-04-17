@@ -1,7 +1,7 @@
 import "./Button.css";
 
 import { IconContext } from "react-icons";
-import { ImArrowLeft2, ImArrowRight2 } from "react-icons/im";
+import { ImArrowLeft2, ImArrowRight2, ImBin2, ImPencil } from "react-icons/im";
 
 import { ButtonIcon, ButtonStyle } from "@/types";
 
@@ -33,6 +33,12 @@ function Button({
         break;
       case "arrow-right":
         iconContent = <ImArrowRight2 data-testid="icon-arrow-right" />;
+        break;
+      case "delete":
+        iconContent = <ImBin2 data-testid="icon-delete" />;
+        break;
+      case "edit":
+        iconContent = <ImPencil data-testid="icon-edit" />;
         break;
       default:
         console.log(`Unknown icon type ${icon}`);

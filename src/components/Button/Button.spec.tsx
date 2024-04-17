@@ -72,4 +72,22 @@ describe("Button", () => {
     expect(button).not.toHaveTextContent("Learn more");
     expect(screen.getByTestId("icon-arrow-right")).toBeInTheDocument();
   });
+
+  test("Icon option of edit will use a valid icon", () => {
+    render(<Button style="primary" ariaLabel="Edit card" icon="edit" />);
+
+    expect(
+      screen.getByRole("button", { name: "Edit card" })
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("icon-edit")).toBeInTheDocument();
+  });
+
+  test("Icon option of delete will use a valid icon", () => {
+    render(<Button style="primary" ariaLabel="Delete card" icon="delete" />);
+
+    expect(
+      screen.getByRole("button", { name: "Delete card" })
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("icon-delete")).toBeInTheDocument();
+  });
 });

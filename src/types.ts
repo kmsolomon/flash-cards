@@ -22,9 +22,9 @@ export type NewCardSetType = Omit<CardSetType, "id">;
 
 export type NewFlashCardType = Omit<FlashCardType, "id">;
 
-export type ButtonStyle = "primary" | "secondary" | "icon";
+export type ButtonStyle = "primary" | "secondary" | "icon" | "small-icon";
 
-export type ButtonIcon = "arrow-left" | "arrow-right";
+export type ButtonIcon = "arrow-left" | "arrow-right" | "edit" | "delete";
 
 export type MenuOptionItems = {
   name: string;
