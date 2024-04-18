@@ -22,7 +22,7 @@ function CreateCardSet() {
     form: null,
   });
 
-  const titleRef = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLTextAreaElement>(null);
 
   function clearFields(): void {
     setTitle("");
@@ -87,7 +87,7 @@ function CreateCardSet() {
           >
             {errors.title}
           </div>
-          <input
+          <textarea
             ref={titleRef}
             required
             id="title"
@@ -97,17 +97,17 @@ function CreateCardSet() {
             aria-invalid={ariaInvalidTitle}
             aria-describedby="titleError"
             onChange={(e) => setTitle(e.target.value)}
-          />
+          ></textarea>
         </div>
         <div className="input-group">
           <label htmlFor="description">Description</label>
-          <input
+          <textarea
             id="description"
             name="description"
             value={description}
             maxLength={200}
             onChange={(e) => setDescription(e.target.value)}
-          ></input>
+          ></textarea>
         </div>
         <Button style="primary" type="submit" text="Create set" />
       </form>

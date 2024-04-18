@@ -32,7 +32,7 @@ function EditCardSet() {
     }
   }, [cardSet]);
 
-  const titleRef = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLTextAreaElement>(null);
 
   const clearFields = () => {
     setTitle("");
@@ -106,7 +106,7 @@ function EditCardSet() {
           >
             {errors.title}
           </div>
-          <input
+          <textarea
             ref={titleRef}
             id="title"
             name="title"
@@ -115,7 +115,7 @@ function EditCardSet() {
             aria-invalid={ariaInvalidTitle}
             aria-describedby="titleError"
             onChange={(e) => setTitle(e.target.value)}
-          />
+          ></textarea>
         </div>
         <div className="input-group">
           <label htmlFor="description">Description</label>

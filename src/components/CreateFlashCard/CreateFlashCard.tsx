@@ -64,7 +64,6 @@ function CreateFlashCard() {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-    console.log("todo");
 
     if (allInputsValid() && id) {
       try {
