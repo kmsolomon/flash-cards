@@ -45,11 +45,11 @@ function CreateFlashCard() {
 
     if (answer.trim() === "") {
       setAriaInvalidAnswer(true);
-      errorsUpdate.answer = "Error: Question can not be a blank string.";
+      errorsUpdate.answer = "Error: Answer can not be a blank string.";
     } else if (answer.length > 1000) {
       setAriaInvalidAnswer(true);
       errorsUpdate.answer =
-        "Error: Question can not be longer than 1000 characters.";
+        "Error: Answer can not be longer than 1000 characters.";
     } else {
       setAriaInvalidAnswer(false);
       errorsUpdate.answer = null;
@@ -80,14 +80,14 @@ function CreateFlashCard() {
     }
   };
   return (
-    <div>
+    <div className="main-content">
       <h1>Add new flash card</h1>
       <form name="createFlashCard" onSubmit={handleCreateCard}>
-        <div>
+        <div className="input-group">
           <label htmlFor="question">Question</label>
           <div
             id="questionError"
-            className={errors.question ? "" : "hide"}
+            className={errors.question ? "input-error" : "hide"}
             data-testid="questionError"
           >
             {errors.question}
@@ -102,11 +102,11 @@ function CreateFlashCard() {
             onChange={(e) => setQuestion(e.target.value)}
           ></textarea>
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="answer">Answer</label>
           <div
             id="answerError"
-            className={errors.answer ? "" : "hide"}
+            className={errors.answer ? "input-error" : "hide"}
             data-testid="answerError"
           >
             {errors.answer}
@@ -116,6 +116,7 @@ function CreateFlashCard() {
             id="answer"
             name="answer"
             maxLength={1000}
+            rows={4}
             value={answer}
             aria-invalid={ariaInvalidAnswer}
             onChange={(e) => setAnswer(e.target.value)}

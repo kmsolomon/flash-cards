@@ -26,6 +26,11 @@ main {
   flex: 1;
 }
 
+.main-content {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #121212;
@@ -40,4 +45,45 @@ h2 {
 
 .hide {
   display: none;
+}
+
+@media screen and (min-width: 769px) {
+  main {
+    margin: 1rem;
+  }
+}
+
+/**** Form styles ****/
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group textarea {
+  min-width: 100%;
+  max-width: 100%;
+  margin: 0 0 1.5rem 0;
+}
+
+@media screen and (min-width: 769px) {
+  .input-group textarea {
+    min-width: 50%;
+    max-width: 50%;
+  }
+}
+
+.input-error {
+  color: #b30300;
+}
+
+@media (prefers-color-scheme: dark) {
+  .input-error {
+    color: #ff7d7a;
+  }
+}
+
+.button-group {
+  display: flex;
+  justify-content: left;
+  gap: 1rem;
 }

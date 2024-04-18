@@ -94,7 +94,7 @@ function EditCardSet() {
   };
 
   return (
-    <div>
+    <div className="main-content">
       <h1>Edit details for {cardSet.title}</h1>
       <form id="editSet" name="editSet" onSubmit={handleSubmit}>
         <div className="input-group">

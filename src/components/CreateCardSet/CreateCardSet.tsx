@@ -75,42 +75,45 @@ function CreateCardSet() {
     }
   }
   return (
-    <div>
-      <h1>Create set</h1>
-      <form name="createSetForm" onSubmit={(e) => handleSubmit(e)}>
-        <div className="input-group">
-          <label htmlFor="title">Title (required)</label>
-          <div
-            id="titleError"
-            className={errors.title ? "" : "hide"}
-            data-testid="titleError"
-          >
-            {errors.title}
+    <div className="main-content">
+      <div>
+        <h1>Create set</h1>
+        <form name="createSetForm" onSubmit={(e) => handleSubmit(e)}>
+          <div className="input-group">
+            <label htmlFor="title">Title (required)</label>
+            <div
+              id="titleError"
+              className={errors.title ? "input-error" : "hide"}
+              data-testid="titleError"
+            >
+              {errors.title}
+            </div>
+            <textarea
+              ref={titleRef}
+              required
+              id="title"
+              name="title"
+              value={title}
+              maxLength={100}
+              aria-invalid={ariaInvalidTitle}
+              aria-describedby="titleError"
+              onChange={(e) => setTitle(e.target.value)}
+            ></textarea>
           </div>
-          <textarea
-            ref={titleRef}
-            required
-            id="title"
-            name="title"
-            value={title}
-            maxLength={100}
-            aria-invalid={ariaInvalidTitle}
-            aria-describedby="titleError"
-            onChange={(e) => setTitle(e.target.value)}
-          ></textarea>
-        </div>
-        <div className="input-group">
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={description}
-            maxLength={200}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-        </div>
-        <Button style="primary" type="submit" text="Create set" />
-      </form>
+          <div className="input-group">
+            <label htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              value={description}
+              maxLength={200}
+              rows={4}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
+          <Button style="primary" type="submit" text="Create set" />
+        </form>
+      </div>
     </div>
   );
 }
