@@ -9,6 +9,10 @@
   }
 }
 
+.flash-card .content {
+  margin: 1rem 0rem;
+}
+
 .flash-card-inner {
   display: grid;
   transition-duration: 0.5s;

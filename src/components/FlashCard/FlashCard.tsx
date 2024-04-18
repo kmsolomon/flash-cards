@@ -50,7 +50,7 @@ const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
           <div className="header">
             <h2>Question {numOf ? numOf : null}</h2>
           </div>
-          <p>{card.question}</p>
+          <div className="content">{card.question}</div>
           <Button
             style="primary"
             type="button"
@@ -68,7 +68,7 @@ const FlashCard = forwardRef<HTMLDivElement, CardProps>(function FlashCard(
           <div className="header">
             <h2>Answer {numOf ? numOf : null}</h2>
           </div>
-          <p>{card.answer}</p>
+          <div className="content">{card.answer}</div>
           <Button
             style="primary"
             type="button"

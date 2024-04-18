@@ -11,10 +11,11 @@
 }
 
 .card-container {
-  margin: 0 0 1.5rem 0;
+  margin: 1.5rem 0;
 }
 
 .set-controls {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
