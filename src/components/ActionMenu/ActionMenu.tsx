@@ -9,6 +9,7 @@ interface ActionMenuProps {
   ariaLabel?: string;
   buttonIcon?: string;
   buttonType?: "string" | "icon" | "icon-string";
+  menuPosition?: "left" | "right";
   menuOptions: MenuOptionItems[];
 }
 
@@ -21,6 +22,7 @@ function ActionMenu({
   ariaLabel,
   //buttonIcon,
   buttonType = "string",
+  menuPosition = "right",
   menuOptions,
 }: ActionMenuProps) {
   const buttonId = useId();
@@ -161,7 +163,7 @@ function ActionMenu({
       </button>
       <ul
         ref={outerMenuRef}
-        className={menuExpanded ? "show" : "hide"}
+        className={`${menuExpanded ? "show" : "hide"} ${menuPosition}`}
         id={menuId}
         aria-labelledby={buttonId}
         role="menu"

@@ -1,4 +1,5 @@
 .btn {
+  display: inline-block;
   padding: 10px 12px;
   font-size: 1rem;
   border-radius: var(--border-radius);
@@ -8,6 +9,7 @@
   transition: background-color, border-color, 0.4s;
   outline-offset: 2px;
   outline: 2px solid transparent;
+  text-decoration: none;
 }
 
 .btn:focus {

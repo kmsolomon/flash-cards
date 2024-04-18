@@ -1,3 +1,5 @@
+import "./CardSetOverview.css";
+
 import { useState } from "react";
 import { useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
 
@@ -64,8 +66,8 @@ function CardSetOverview() {
   };
 
   return (
-    <div className="card-overview">
-      <div>
+    <div className="main-content">
+      <div className="set-header">
         <h1>{cardSet.title}</h1>
         <ActionMenu
           buttonLabel="Options"
@@ -78,21 +80,30 @@ function CardSetOverview() {
         <div className="description">{cardSet.description}</div>
       ) : null}
 
+      <div className="fancy-spacer"></div>
       <div>
-        <h2>Flash cards</h2>
-        <div>
-          <a href={`/set/${cardSet.id}/cards`}>Start reviewing</a>
-          <a href={`/set/${cardSet.id}/cards/create`}>Add flash card</a>
-          <a href={`/set/${cardSet.id}/cards/edit`}>Reorder flash cards</a>
+        <div className="flash-cards-actions">
+          <h2>Flash cards</h2>
+          <div className="button-group large-btns">
+            <a className="btn primary" href={`/set/${cardSet.id}/cards`}>
+              Start reviewing
+            </a>
+            <a
+              className="btn secondary"
+              href={`/set/${cardSet.id}/cards/create`}
+            >
+              Add flash card
+            </a>
+          </div>
         </div>
         <h3>Current cards:</h3>
         <div>
           {cardSet.flashcards.length > 0 ? (
-            <ul>
+            <ul className="card-list">
               {cardSet.flashcards.map((card, index) => (
                 <li key={card.id}>
-                  <div>{card.question}</div>
-                  <div>
+                  <div className="card-question">{card.question}</div>
+                  <div className="button-group">
                     <Button
                       type="button"
                       style="small-icon"

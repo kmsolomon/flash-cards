@@ -1,0 +1,40 @@
+.set-header {
+  display: flex;
+  gap: 1rem;
+}
+
+.fancy-spacer {
+  content: " ";
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(138deg, #fee44e 0%, #4ec4d1 65%, #d898ec 85%);
+  margin: 0.5rem 0;
+}
+
+.card-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
+  margin: 0.75rem 0;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-less-round);
+}
+
+.card-list .button-group {
+  gap: 0.5rem;
+}
+
+.card-list .card-question {
+  align-self: center;
+}
+
+.flash-cards-actions {
+  margin: 1rem 0;
+}
