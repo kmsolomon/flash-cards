@@ -35,3 +35,9 @@
 .action-menu li:focus {
   background-color: var(--yellow);
 }
+
+.action-menu button.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

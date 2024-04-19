@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ImCalculator } from "react-icons/im";
 
 import { MenuOptionItems } from "@/types";
 
@@ -184,5 +185,58 @@ describe("ActionMenu", () => {
 
     expect(menuBtn).toHaveAttribute("aria-expanded", "false");
     expect(menu).toHaveClass("hide");
+  });
+
+  it("Should use the provided icon and aria-label", async () => {
+    const testIcon = <ImCalculator data-testid="icon-calc" />;
+    const testOptions: MenuOptionItems[] = [
+      {
+        name: "Edit",
+        action: vi.fn(),
+      },
+      {
+        name: "Copy",
+        action: vi.fn(),
+      },
+    ];
+    render(
+      <ActionMenu
+        ariaLabel="Calculate"
+        buttonIcon={testIcon}
+        buttonType="icon"
+        menuOptions={testOptions}
+      />
+    );
+
+    const button = screen.getByRole("button", { name: "Calculate" });
+
+    expect(button).toBeInTheDocument();
+    expect(button).toContainElement(screen.getByTestId("icon-calc"));
+    expect(button).toHaveAttribute("aria-label", "Calculate");
+  });
+
+  it("Should not display a text label if buttonType icon is used", async () => {
+    const testIcon = <ImCalculator />;
+    const testOptions: MenuOptionItems[] = [
+      {
+        name: "Edit",
+        action: vi.fn(),
+      },
+      {
+        name: "Copy",
+        action: vi.fn(),
+      },
+    ];
+    render(
+      <ActionMenu
+        buttonLabel="Test!"
+        buttonIcon={testIcon}
+        buttonType="icon"
+        ariaLabel="Calculate"
+        menuOptions={testOptions}
+      />
+    );
+
+    expect(screen.queryByText("Test!")).not.toBeInTheDocument();
   });
 });

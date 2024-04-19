@@ -7,21 +7,22 @@ import { MenuOptionItems } from "@/types";
 interface ActionMenuProps {
   buttonLabel?: string;
   ariaLabel?: string;
-  buttonIcon?: string;
+  buttonIcon?: JSX.Element;
   buttonType?: "string" | "icon" | "icon-string";
+  buttonClasses?: string;
   menuPosition?: "left" | "right";
   menuOptions: MenuOptionItems[];
 }
 
 // Todo:
 // - styling
-// - icon support
 
 function ActionMenu({
   buttonLabel,
   ariaLabel,
-  //buttonIcon,
+  buttonIcon,
   buttonType = "string",
+  buttonClasses,
   menuPosition = "right",
   menuOptions,
 }: ActionMenuProps) {
@@ -150,7 +151,9 @@ function ActionMenu({
       <button
         ref={buttonRef}
         id={buttonId}
-        className="btn menu-btn"
+        className={`menu-btn${buttonType === "icon" ? " icon " : ""}${
+          buttonClasses ? ` ${buttonClasses}` : ""
+        }`}
         type="button"
         aria-haspopup="true"
         aria-expanded={menuExpanded}
@@ -159,7 +162,7 @@ function ActionMenu({
         onClick={handleMenuOpen}
         onKeyDown={handleMenuKeyDown}
       >
-        {buttonType !== "icon" ? buttonLabel : null}
+        {buttonType !== "icon" ? buttonLabel : buttonIcon}
       </button>
       <ul
         ref={outerMenuRef}

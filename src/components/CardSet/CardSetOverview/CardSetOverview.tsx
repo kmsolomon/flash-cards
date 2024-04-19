@@ -1,6 +1,7 @@
 import "./CardSetOverview.css";
 
 import { useState } from "react";
+import { ImCogs } from "react-icons/im";
 import { useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
 
 import ActionMenu from "@/components/ActionMenu/ActionMenu";
@@ -70,8 +71,10 @@ function CardSetOverview() {
       <div className="set-header">
         <h1>{cardSet.title}</h1>
         <ActionMenu
-          buttonLabel="Options"
-          buttonType="string"
+          buttonIcon={<ImCogs />}
+          ariaLabel="Set options"
+          buttonType="icon"
+          buttonClasses="btn primary small-icon"
           menuOptions={menuOptions}
         />
       </div>
