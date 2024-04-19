@@ -28,6 +28,12 @@
   border-radius: var(--border-radius-less-round);
 }
 
+@media (prefers-color-scheme: dark) {
+  .card-list li {
+    background-color: var(--dark-mode-secondary-bg);
+  }
+}
+
 .card-list .button-group {
   gap: 0.5rem;
 }

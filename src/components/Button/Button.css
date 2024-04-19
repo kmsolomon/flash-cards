@@ -65,16 +65,13 @@
 
 @media (prefers-color-scheme: dark) {
   .secondary {
-    color: #72c8fd;
-    background-color: #111;
-    border-color: #72c8fd;
+    color: var(--light-blue);
+    background-color: var(--dark-mode-primary-bg);
   }
 
   .secondary:hover,
   .secondary:active {
-    color: #fff;
-    background-color: #111;
-    border-color: #fff;
+    background-color: var(--dark-mode-secondary-bg);
   }
 }
 

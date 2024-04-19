@@ -36,6 +36,10 @@
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
+.flash-card .answer .header {
+  background-color: #4ec4d1;
+}
+
 .question,
 .answer {
   background-color: #fff;

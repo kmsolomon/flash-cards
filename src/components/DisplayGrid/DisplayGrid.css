@@ -13,6 +13,12 @@
   box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
 }
 
+@media (prefers-color-scheme: dark) {
+  .display-grid-card {
+    background-color: var(--dark-mode-secondary-bg);
+  }
+}
+
 .display-grid-card .header {
   font-weight: 600;
   font-size: 1.3rem;

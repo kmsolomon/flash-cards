@@ -8,11 +8,26 @@
 :root {
   --border-radius: 22px;
   --border-radius-less-round: 8px;
+  --dark-mode-primary-bg: #121212;
+  --dark-mode-secondary-bg: #202020;
+  --yellow: #fee44e;
+  --orange: #ffb461;
+  --green: #adda5b;
+  --light-blue: #4ec4d1;
+  --dark-blue: #005c66;
+  --purple: #d898ec;
 }
 
 body {
   font-family: "Poppins", Arial, sans-serif;
   color: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-mode-primary-bg);
+    color: #fff;
+  }
 }
 
 #root {
@@ -29,13 +44,6 @@ main {
 .main-content {
   margin: 0 auto;
   max-width: 1200px;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #fff;
-  }
 }
 
 h1 {
@@ -113,5 +121,17 @@ h2 {
   }
   .button-group.large-btns a {
     text-align: left;
+  }
+}
+
+/***/
+
+a {
+  color: #005c66;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    color: #4ec4d1;
   }
 }
