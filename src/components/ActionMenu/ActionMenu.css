@@ -33,5 +33,5 @@
 
 .action-menu li:hover,
 .action-menu li:focus {
-  background-color: #fee44e;
+  background-color: var(--yellow);
 }

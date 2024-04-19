@@ -27,7 +27,7 @@
 }
 
 .flash-card .header {
-  background-color: #adda5b;
+  background-color: var(--green);
   color: #222;
   font-weight: 600;
   font-size: 1.3rem;
@@ -37,7 +37,7 @@
 }
 
 .flash-card .answer .header {
-  background-color: #4ec4d1;
+  background-color: var(--light-blue);
 }
 
 .question,
@@ -57,7 +57,7 @@
 @media (prefers-color-scheme: dark) {
   .question,
   .answer {
-    background-color: #202020;
+    background-color: var(--dark-mode-secondary-bg);
   }
 }
 

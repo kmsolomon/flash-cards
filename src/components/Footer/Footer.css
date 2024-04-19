@@ -2,6 +2,6 @@ footer {
   padding: 1rem;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
-  background: #4ec4d1;
-  background: linear-gradient(327deg, #d898ec 0%, #4ec4d1 56%);
+  background: var(--light-blue);
+  background: linear-gradient(327deg, var(--purple) 0%, var(--light-blue) 56%);
 }

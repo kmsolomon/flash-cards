@@ -25,14 +25,14 @@
 }
 
 .primary {
-  background-color: #005c66;
+  background-color: var(--dark-blue);
   color: #fff;
 }
 
 .primary:hover,
 .primary:active {
-  background-color: #fee44e;
-  border-color: #fee44e;
+  background-color: var(--yellow);
+  border-color: var(--yellow);
   color: #182e4e;
 }
 
@@ -41,7 +41,7 @@
   background-clip: padding-box;
   border: solid 2px transparent;
   position: relative;
-  color: #005c66;
+  color: var(--dark-blue);
 }
 
 .secondary::before {
@@ -54,13 +54,13 @@
   z-index: -1;
   margin: -2px;
   border-radius: inherit;
-  background: linear-gradient(327deg, #4ec4d1 0%, #fee44e 83%);
+  background: linear-gradient(327deg, var(--light-blue) 0%, var(--yellow) 83%);
 }
 
 .secondary:hover,
 .secondary:active {
   background-color: #333;
-  color: #fee44e;
+  color: var(--yellow);
 }
 
 @media (prefers-color-scheme: dark) {

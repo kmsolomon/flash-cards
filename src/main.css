@@ -127,11 +127,11 @@ h2 {
 /***/
 
 a {
-  color: #005c66;
+  color: var(--dark-blue);
 }
 
 @media (prefers-color-scheme: dark) {
   a {
-    color: #4ec4d1;
+    color: var(--light-blue);
   }
 }

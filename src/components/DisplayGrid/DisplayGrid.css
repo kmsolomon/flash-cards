@@ -28,23 +28,23 @@
 }
 
 .display-grid-card:nth-child(5n + 1) .header {
-  background-color: #ffb461;
+  background-color: var(--orange);
 }
 
 .display-grid-card:nth-child(5n + 2) .header {
-  background-color: #fee44e;
+  background-color: var(--yellow);
 }
 
 .display-grid-card:nth-child(5n + 3) .header {
-  background-color: #adda5b;
+  background-color: var(--green);
 }
 
 .display-grid-card:nth-child(5n + 4) .header {
-  background-color: #4ec4d1;
+  background-color: var(--light-blue);
 }
 
 .display-grid-card:nth-child(5n + 5) .header {
-  background-color: #d898ec;
+  background-color: var(--purple);
 }
 
 .display-grid-card .total-cards {
