@@ -67,7 +67,7 @@ describe("CardSetOverview", () => {
     expect(screen.getByText(description)).toBeInTheDocument();
   });
 
-  it("Should have links for adding cards, reviewing cards, and reorganizing the cards", async () => {
+  it("Should have links for adding cards and reviewing cards", async () => {
     render(<RouterProvider router={router} />);
 
     await screen.findByRole("heading", {
@@ -80,9 +80,6 @@ describe("CardSetOverview", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /add flash card/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /reorder flash cards/i })
     ).toBeInTheDocument();
   });
 
