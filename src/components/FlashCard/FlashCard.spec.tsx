@@ -9,10 +9,11 @@ const testCard: FlashCardType = {
   id: "12345",
   question: "What does the fox say?",
   answer: "Ring-ding-ding-ding-ding-dingeringeding",
+  cardsetId: "1",
 };
 
 describe("FlashCard", () => {
-  test("The card initially displays the given card set title and question", () => {
+  it("Initially displays the given card set title and question", () => {
     render(<FlashCard card={testCard} />);
     expect(screen.getByTestId("card")).not.toHaveClass("with-answer");
     const question = screen.getByTestId("question");
@@ -20,14 +21,14 @@ describe("FlashCard", () => {
     expect(within(question).getByText(testCard.question)).toBeInTheDocument();
   });
 
-  test("If provided, the numOf text is displayed", () => {
+  it("Displays the numOf text if a value is set", () => {
     render(<FlashCard card={testCard} numOf="1 of 4" />);
     expect(screen.getByTestId("card")).not.toHaveClass("with-answer");
     const question = screen.getByTestId("question");
     expect(within(question).getByText("Question 1 of 4")).toBeInTheDocument();
   });
 
-  test("The card has a show question/answer buttons", () => {
+  it("Should have buttons to show question/answer", () => {
     render(<FlashCard card={testCard} />);
     expect(
       screen.getByRole("button", { name: "Show answer" })
@@ -37,7 +38,7 @@ describe("FlashCard", () => {
     ).toBeInTheDocument();
   });
 
-  test("Clicking the show answer button and then the show question button results in the question being shown again", async () => {
+  it("Should display the question after the user clicks show answer, and then clicks show question", async () => {
     const user = userEvent.setup();
     render(<FlashCard card={testCard} />);
     const card = screen.getByTestId("card");

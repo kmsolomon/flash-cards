@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import Button from "./Button";
 
 describe("Button", () => {
-  test("It uses the given text, type, and arialabel", () => {
+  it("Uses the given text, type, and arialabel", () => {
     render(
       <Button
         style="primary"
@@ -22,7 +22,7 @@ describe("Button", () => {
     expect(button).toHaveAttribute("type", "submit");
   });
 
-  test("It uses the given click handler", async () => {
+  it("Uses the given click handler", async () => {
     const mockOnClick = vi.fn();
     const user = userEvent.setup();
     render(
@@ -37,7 +37,7 @@ describe("Button", () => {
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 
-  test("Button will be disabled if that style is selected", () => {
+  it("Should disable the button if that style is selected", () => {
     render(
       <Button
         style="primary"
@@ -50,7 +50,7 @@ describe("Button", () => {
     expect(button).toBeDisabled();
   });
 
-  test("Icon option of arrow-left will use a valid icon", () => {
+  it("Should use a valid icon for the option arrow-left", () => {
     render(
       <Button
         style="primary"
@@ -64,7 +64,7 @@ describe("Button", () => {
     expect(screen.getByTestId("icon-arrow-left")).toBeInTheDocument();
   });
 
-  test("Icon option of arrow-right will use a valid icon", () => {
+  it("Should use a valid icon for the option arrow-right", () => {
     render(
       <Button style="primary" ariaLabel="Next question" icon="arrow-right" />
     );
@@ -73,7 +73,7 @@ describe("Button", () => {
     expect(screen.getByTestId("icon-arrow-right")).toBeInTheDocument();
   });
 
-  test("Icon option of edit will use a valid icon", () => {
+  it("Should use a valid icon for the option edit", () => {
     render(<Button style="primary" ariaLabel="Edit card" icon="edit" />);
 
     expect(
@@ -82,7 +82,7 @@ describe("Button", () => {
     expect(screen.getByTestId("icon-edit")).toBeInTheDocument();
   });
 
-  test("Icon option of delete will use a valid icon", () => {
+  it("Should use a valid icon for the option delete", () => {
     render(<Button style="primary" ariaLabel="Delete card" icon="delete" />);
 
     expect(

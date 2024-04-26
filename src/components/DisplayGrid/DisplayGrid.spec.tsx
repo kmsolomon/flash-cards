@@ -32,7 +32,7 @@ describe("DisplayGrid", () => {
     },
   ];
 
-  test("It displays the given items", async () => {
+  it("Displays the given items", async () => {
     const TESTDATA: CompactCardSetType[] = testData;
     const router = createMemoryRouter(
       [
@@ -65,7 +65,7 @@ describe("DisplayGrid", () => {
     ).toBeInTheDocument();
   });
 
-  test("If there are no items a message is displayed", async () => {
+  it("Displays a message if there are no items to display", async () => {
     const TESTDATA: CompactCardSetType[] = [];
     const router = createMemoryRouter(
       [
@@ -89,7 +89,7 @@ describe("DisplayGrid", () => {
     ).toBeInTheDocument();
   });
 
-  test("The grid card includes a link to the page for that set", async () => {
+  it("Includes a link to the page for that set within a grid card", async () => {
     const TESTDATA: CompactCardSetType[] = testData;
     const router = createMemoryRouter(
       [

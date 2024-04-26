@@ -32,7 +32,7 @@ const testSet = {
 };
 
 describe("CardSet", () => {
-  test("The card set title is displayed", async () => {
+  it("Displays the card set title", async () => {
     const router = createMemoryRouter(
       [
         {
@@ -50,7 +50,7 @@ describe("CardSet", () => {
     expect(header).toHaveTextContent(testSet.title);
   });
 
-  test("When a card set has no cards the empty set text is displayed and there should not be buttons to navigate between cards", async () => {
+  it("Should not have buttons to navigate between cards and the empty set text is displayed when a card set has no cards", async () => {
     const noCards = { ...testSet, flashcards: [] };
     const router = createMemoryRouter(
       [
@@ -79,7 +79,7 @@ describe("CardSet", () => {
     ).not.toBeInTheDocument();
   });
 
-  test("When a card set has cards the first card is displayed initially", async () => {
+  it("Should initially display the first card", async () => {
     const router = createMemoryRouter(
       [
         {
@@ -100,7 +100,7 @@ describe("CardSet", () => {
     ).toBeInTheDocument();
   });
 
-  test("The card set has buttons to switch to the next and previous cards", async () => {
+  it("Should have buttons to switch to the next and previous cards", async () => {
     const user = userEvent.setup();
     const router = createMemoryRouter(
       [
@@ -141,7 +141,7 @@ describe("CardSet", () => {
     expect(nextBtn).toBeEnabled();
   });
 
-  test("Should have a link to return to the set overview", async () => {
+  it("Should have a link to return to the set overview", async () => {
     const router = createMemoryRouter(
       [
         {
