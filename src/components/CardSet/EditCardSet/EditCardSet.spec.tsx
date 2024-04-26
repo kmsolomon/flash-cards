@@ -90,6 +90,7 @@ describe("EditCardSet", () => {
     });
     const titleError = screen.getByTestId("titleError");
 
+    await user.click(titleInput);
     await user.clear(titleInput);
     await user.type(titleInput, "   ");
     expect(titleError).toBeEmptyDOMElement();
@@ -107,28 +108,18 @@ describe("EditCardSet", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await user.clear(
-      screen.getByRole("textbox", {
-        name: /title/i,
-      })
-    );
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /title/i,
-      }),
-      "Updates"
-    );
-    await user.clear(
-      screen.getByRole("textbox", {
-        name: /description/i,
-      })
-    );
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /description/i,
-      }),
-      "123"
-    );
+    const titleInput = screen.getByRole("textbox", {
+      name: /title/i,
+    });
+    const descriptionInput = screen.getByRole("textbox", {
+      name: /description/i,
+    });
+    await user.click(titleInput);
+    await user.clear(titleInput);
+    await user.type(titleInput, "Updates");
+    await user.click(descriptionInput);
+    await user.clear(descriptionInput);
+    await user.type(descriptionInput, "123");
     await user.click(screen.getByRole("button", { name: /save changes/i }));
     expect(updateMock).toBeCalled();
     expect(updateMock).toHaveBeenCalledWith(testSet.id, {
@@ -149,17 +140,12 @@ describe("EditCardSet", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await user.clear(
-      screen.getByRole("textbox", {
-        name: /title/i,
-      })
-    );
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /title/i,
-      }),
-      "Updates"
-    );
+    const titleInput = screen.getByRole("textbox", {
+      name: /title/i,
+    });
+    await user.click(titleInput);
+    await user.clear(titleInput);
+    await user.type(titleInput, "Updates");
 
     await user.click(screen.getByRole("button", { name: /save changes/i }));
     expect(updateMock).toBeCalled();
@@ -172,17 +158,12 @@ describe("EditCardSet", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await user.clear(
-      screen.getByRole("textbox", {
-        name: /description/i,
-      })
-    );
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /description/i,
-      }),
-      "123"
-    );
+    const descriptionInput = screen.getByRole("textbox", {
+      name: /description/i,
+    });
+    await user.click(descriptionInput);
+    await user.clear(descriptionInput);
+    await user.type(descriptionInput, "123");
 
     await user.click(screen.getByRole("button", { name: /save changes/i }));
     expect(updateMock).toBeCalled();

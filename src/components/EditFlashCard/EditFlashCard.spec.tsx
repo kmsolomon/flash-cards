@@ -115,6 +115,7 @@ describe("EditFlashCard", () => {
 
     expect(questionField).toHaveAttribute("aria-invalid", "false");
 
+    await user.click(questionField);
     await user.clear(questionField);
     await user.type(questionField, "    ");
     await user.click(screen.getByRole("button", { name: "Save changes" }));
@@ -131,6 +132,7 @@ describe("EditFlashCard", () => {
 
     expect(answerField).toHaveAttribute("aria-invalid", "false");
 
+    await user.click(answerField);
     await user.clear(answerField);
     await user.type(answerField, "   ");
     await user.click(screen.getByRole("button", { name: "Save changes" }));
@@ -144,10 +146,14 @@ describe("EditFlashCard", () => {
     render(<RouterProvider router={router} />);
 
     await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
-    await user.clear(screen.getByRole("textbox", { name: /question/i }));
-    await user.type(screen.getByRole("textbox", { name: /question/i }), "Foo?");
-    await user.clear(screen.getByRole("textbox", { name: /answer/i }));
-    await user.type(screen.getByRole("textbox", { name: /answer/i }), "Bar!");
+    const questionInput = screen.getByRole("textbox", { name: /question/i });
+    const answerInput = screen.getByRole("textbox", { name: /answer/i });
+    await user.click(questionInput);
+    await user.clear(questionInput);
+    await user.type(questionInput, "Foo?");
+    await user.click(answerInput);
+    await user.clear(answerInput);
+    await user.type(answerInput, "Bar!");
     await user.click(screen.getByRole("button", { name: "Save changes" }));
 
     expect(updateMock).toBeCalledWith(testCard.cardSetId, testCard.id, {
@@ -162,22 +168,26 @@ describe("EditFlashCard", () => {
     render(<RouterProvider router={router} />);
 
     await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
-    await user.clear(screen.getByRole("textbox", { name: /question/i }));
-    await user.type(screen.getByRole("textbox", { name: /question/i }), "Foo?");
+    const questionInput = screen.getByRole("textbox", { name: /question/i });
+    await user.click(questionInput);
+    await user.clear(questionInput);
+    await user.type(questionInput, "Foo?");
     await user.click(screen.getByRole("button", { name: "Save changes" }));
 
     expect(updateMock).toBeCalledWith(testCard.cardSetId, testCard.id, {
       question: "Foo?",
     });
   });
-  it("Should call update with only description if only the description was changed", async () => {
+  it("Should call update with only description if only the answer was changed", async () => {
     const router = setupRouter();
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
     await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
-    await user.clear(screen.getByRole("textbox", { name: /answer/i }));
-    await user.type(screen.getByRole("textbox", { name: /answer/i }), "Bar!");
+    const answerInput = screen.getByRole("textbox", { name: /answer/i });
+    await user.click(answerInput);
+    await user.clear(answerInput);
+    await user.type(answerInput, "Bar!");
     await user.click(screen.getByRole("button", { name: "Save changes" }));
 
     expect(updateMock).toBeCalledWith(testCard.cardSetId, testCard.id, {

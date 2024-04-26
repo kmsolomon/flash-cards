@@ -34,6 +34,7 @@ describe("CreateFlashCard", () => {
         path: "/set/:id/cards/create",
         element: <CreateFlashCard />,
       },
+      { path: "/set/:id", element: <div></div> },
     ],
     { initialEntries: ["/set/12345/cards/create"] }
   );
