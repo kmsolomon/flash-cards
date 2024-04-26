@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
@@ -48,12 +48,15 @@ describe("EditCardSet", () => {
     { initialEntries: ["/set/12345", "/set/12345/edit"] }
   );
 
-  it("Should have a form with the expected input fields", () => {
+  it("Should have a form with the expected input fields", async () => {
     render(<RouterProvider router={router} />);
 
-    expect(
-      screen.getByRole("heading", { level: 1, name: /edit details for/i })
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByRole("heading", { level: 1, name: /edit details for/i })
+      ).toBeInTheDocument();
+    });
+
     expect(screen.getByRole("form")).toBeInTheDocument();
     expect(screen.getByRole("textbox", { name: /title/i })).toBeInTheDocument();
     expect(
@@ -65,18 +68,18 @@ describe("EditCardSet", () => {
     expect(screen.getByRole("button", { name: /cancel/i })).toBeInTheDocument();
   });
 
-  it("Should have a max length of 100 for the title input field", () => {
+  it("Should have a max length of 100 for the title input field", async () => {
     render(<RouterProvider router={router} />);
-
+    await waitFor(() => screen.findByRole("heading"));
     expect(screen.getByRole("textbox", { name: /title/i })).toHaveAttribute(
       "maxlength",
       "100"
     );
   });
 
-  it("Should have a max length of 200 for the description input field", () => {
+  it("Should have a max length of 200 for the description input field", async () => {
     render(<RouterProvider router={router} />);
-
+    await waitFor(() => screen.findByRole("heading"));
     expect(
       screen.getByRole("textbox", { name: /description/i })
     ).toHaveAttribute("maxlength", "200");
@@ -85,6 +88,8 @@ describe("EditCardSet", () => {
   it("Should show an error if the user submits a title with a blank string", async () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
+
+    await waitFor(() => screen.findByRole("heading"));
     const titleInput = screen.getByRole("textbox", {
       name: /title/i,
     });
@@ -107,6 +112,7 @@ describe("EditCardSet", () => {
   it("Should call update set with the user-given values if the title is valid", async () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
+    await waitFor(() => screen.findByRole("heading"));
 
     const titleInput = screen.getByRole("textbox", {
       name: /title/i,
@@ -131,6 +137,7 @@ describe("EditCardSet", () => {
   it("Should not call update set if both the title and description are unchanged", async () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
+    await waitFor(() => screen.findByRole("heading"));
 
     await user.click(screen.getByRole("button", { name: /save changes/i }));
     expect(updateMock).not.toBeCalled();
@@ -139,6 +146,7 @@ describe("EditCardSet", () => {
   it("Should call update with only title if only the title was changed", async () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
+    await waitFor(() => screen.findByRole("heading"));
 
     const titleInput = screen.getByRole("textbox", {
       name: /title/i,
@@ -157,6 +165,7 @@ describe("EditCardSet", () => {
   it("Should call update with only description if only the description was changed", async () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
+    await waitFor(() => screen.findByRole("heading"));
 
     const descriptionInput = screen.getByRole("textbox", {
       name: /description/i,
@@ -175,6 +184,7 @@ describe("EditCardSet", () => {
   it("Should not call the update function the user clicks the cancel button", async () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
+    await waitFor(() => screen.findByRole("heading"));
 
     await user.click(screen.getByRole("button", { name: /cancel/i }));
     expect(updateMock).not.toBeCalled();

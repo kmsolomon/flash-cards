@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
@@ -65,7 +65,7 @@ describe("CardSet", () => {
       { initialEntries: [`/set/${testSet.id}/cards`] }
     );
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1 });
+    await waitFor(() => screen.findByRole("heading", { level: 1 }));
     expect(
       within(screen.getByTestId("card-container")).getByText(
         "There are currently no flash cards for this set"
@@ -93,7 +93,7 @@ describe("CardSet", () => {
       { initialEntries: [`/set/${testSet.id}/cards`] }
     );
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1 });
+    await waitFor(() => screen.findByRole("heading", { level: 1 }));
     const cardContainer = screen.getByTestId("card-container");
     expect(
       within(cardContainer).getByText(testSet.flashcards[0].question)
@@ -116,7 +116,7 @@ describe("CardSet", () => {
     );
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", { level: 1 });
+    await waitFor(() => screen.findByRole("heading", { level: 1 }));
     const previousBtn = screen.getByRole("button", {
       name: "Previous question",
     });
@@ -155,7 +155,7 @@ describe("CardSet", () => {
       { initialEntries: [`/set/${testSet.id}/cards`] }
     );
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1 });
+    await waitFor(() => screen.findByRole("heading", { level: 1 }));
     expect(
       screen.getByRole("link", { name: /return to set overview/i })
     ).toBeInTheDocument();

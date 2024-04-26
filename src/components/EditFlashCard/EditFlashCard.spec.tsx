@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
@@ -54,7 +54,9 @@ describe("EditFlashCard", () => {
     const router = setupRouter();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     expect(
       screen.getByRole("heading", { level: 1, name: /edit flash card/i })
     ).toBeInTheDocument();
@@ -73,7 +75,10 @@ describe("EditFlashCard", () => {
   it("Should have 150 as the max length for the question field", async () => {
     const router = setupRouter();
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     expect(screen.getByRole("textbox", { name: /question/i })).toHaveAttribute(
       "maxlength",
       "150"
@@ -82,7 +87,10 @@ describe("EditFlashCard", () => {
   it("Should have 1000 as the max length for the answer field", async () => {
     const router = setupRouter();
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     expect(screen.getByRole("textbox", { name: /answer/i })).toHaveAttribute(
       "maxlength",
       "1000"
@@ -91,14 +99,20 @@ describe("EditFlashCard", () => {
   it("Should have question and answer as required fields", async () => {
     const router = setupRouter();
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     expect(screen.getByRole("textbox", { name: /question/i })).toBeRequired();
     expect(screen.getByRole("textbox", { name: /answer/i })).toBeRequired();
   });
   it("Should put the existing question and answer data into the fields", async () => {
     const router = setupRouter();
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     expect(
       screen.getByRole("textbox", { name: /question/i })
     ).toHaveTextContent("Hello,");
@@ -110,7 +124,10 @@ describe("EditFlashCard", () => {
     const user = userEvent.setup();
     const router = setupRouter();
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     const questionField = screen.getByRole("textbox", { name: /question/i });
 
     expect(questionField).toHaveAttribute("aria-invalid", "false");
@@ -127,7 +144,10 @@ describe("EditFlashCard", () => {
     const router = setupRouter();
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     const answerField = screen.getByRole("textbox", { name: /answer/i });
 
     expect(answerField).toHaveAttribute("aria-invalid", "false");
@@ -145,7 +165,9 @@ describe("EditFlashCard", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     const questionInput = screen.getByRole("textbox", { name: /question/i });
     const answerInput = screen.getByRole("textbox", { name: /answer/i });
     await user.click(questionInput);
@@ -167,7 +189,9 @@ describe("EditFlashCard", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     const questionInput = screen.getByRole("textbox", { name: /question/i });
     await user.click(questionInput);
     await user.clear(questionInput);
@@ -183,7 +207,9 @@ describe("EditFlashCard", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     const answerInput = screen.getByRole("textbox", { name: /answer/i });
     await user.click(answerInput);
     await user.clear(answerInput);
@@ -199,7 +225,9 @@ describe("EditFlashCard", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     await user.clear(screen.getByRole("textbox", { name: /answer/i }));
     await user.type(screen.getByRole("textbox", { name: /answer/i }), "Bar!");
     await user.click(screen.getByRole("button", { name: "Cancel" }));
@@ -211,7 +239,9 @@ describe("EditFlashCard", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", { level: 1, name: /edit flash card/i });
+    await waitFor(() =>
+      screen.findByRole("heading", { level: 1, name: /edit flash card/i })
+    );
     await user.click(screen.getByRole("button", { name: "Save changes" }));
 
     expect(updateMock).not.toBeCalled();

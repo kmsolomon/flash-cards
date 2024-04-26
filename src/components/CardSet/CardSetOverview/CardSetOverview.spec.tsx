@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ReactModal from "react-modal";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
@@ -70,10 +70,12 @@ describe("CardSetOverview", () => {
   it("Should have links for adding cards and reviewing cards", async () => {
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", {
-      level: 2,
-      name: "Flash cards",
-    });
+    await waitFor(() =>
+      screen.findByRole("heading", {
+        level: 2,
+        name: "Flash cards",
+      })
+    );
 
     expect(
       screen.getByRole("link", { name: /start reviewing/i })
@@ -87,10 +89,12 @@ describe("CardSetOverview", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", {
-      level: 1,
-      name: testSet.title,
-    });
+    await waitFor(() =>
+      screen.findByRole("heading", {
+        level: 1,
+        name: testSet.title,
+      })
+    );
 
     expect(
       screen.getByRole("button", { name: /options/i })
@@ -107,10 +111,12 @@ describe("CardSetOverview", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", {
-      level: 1,
-      name: testSet.title,
-    });
+    await waitFor(() =>
+      screen.findByRole("heading", {
+        level: 1,
+        name: testSet.title,
+      })
+    );
     await user.click(screen.getByRole("button", { name: /options/i }));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 
@@ -127,10 +133,12 @@ describe("CardSetOverview", () => {
     const user = userEvent.setup();
     render(<RouterProvider router={router} />);
 
-    await screen.findByRole("heading", {
-      level: 1,
-      name: testSet.title,
-    });
+    await waitFor(() =>
+      screen.findByRole("heading", {
+        level: 1,
+        name: testSet.title,
+      })
+    );
     await user.click(screen.getByRole("button", { name: /options/i }));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 

@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
 import { CompactCardSetType } from "@/types";
@@ -49,7 +49,7 @@ describe("DisplayGrid", () => {
 
     render(<RouterProvider router={router} />);
 
-    const grid = await screen.findByTestId("display-grid");
+    const grid = await waitFor(() => screen.findByTestId("display-grid"));
     expect(grid).toBeInTheDocument();
     expect(
       within(grid).getByRole("heading", { name: testData[0].title, level: 2 })
@@ -82,7 +82,7 @@ describe("DisplayGrid", () => {
 
     render(<RouterProvider router={router} />);
 
-    const grid = await screen.findByTestId("display-grid");
+    const grid = await waitFor(() => screen.findByTestId("display-grid"));
     expect(grid).toBeInTheDocument();
     expect(
       within(grid).getByText("There are no items to display.")
@@ -106,7 +106,7 @@ describe("DisplayGrid", () => {
 
     render(<RouterProvider router={router} />);
 
-    const grid = await screen.findByTestId("display-grid");
+    const grid = await waitFor(() => screen.findByTestId("display-grid"));
     expect(grid).toBeInTheDocument();
     expect(
       within(grid).getByRole("link", { name: testData[0].title })
