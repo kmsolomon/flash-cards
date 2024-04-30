@@ -72,6 +72,10 @@ const router = createBrowserRouter([
             path: "/set/create",
             element: <CreateCardSet />,
           },
+          {
+            path: "/error",
+            element: <ErrorPage />,
+          },
         ],
       },
     ],

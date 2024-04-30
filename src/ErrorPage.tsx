@@ -1,8 +1,13 @@
-import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+import {
+  isRouteErrorResponse,
+  useLocation,
+  useRouteError,
+} from "react-router-dom";
 
 function ErrorPage() {
   const error = useRouteError();
-  console.error(error);
+  const location = useLocation();
+  const message: string = location?.state?.message;
 
   if (isRouteErrorResponse(error)) {
     if (error.status === 404) {
@@ -27,6 +32,16 @@ function ErrorPage() {
         </div>
       );
     }
+  } else if (typeof message !== "undefined") {
+    return (
+      <div id="error-page">
+        <h1>Error</h1>
+        <p>{message}</p>
+        <p>
+          <a href="/">Return to the home page</a>
+        </p>
+      </div>
+    );
   } else {
     return (
       <div id="error-page">
