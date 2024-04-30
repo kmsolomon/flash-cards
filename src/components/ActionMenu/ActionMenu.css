@@ -15,6 +15,7 @@
   box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
   position: absolute;
   min-width: 200px;
+  z-index: 1;
 }
 
 .action-menu li {
