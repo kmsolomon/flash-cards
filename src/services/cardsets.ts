@@ -2,45 +2,80 @@ import { CardSetType, CompactCardSetType, NewCardSetType } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+type JSONError = {
+  error: string;
+};
+
+const isJSONError = (obj: unknown): obj is JSONError => {
+  if (obj === null || typeof obj !== "object") {
+    return false;
+  }
+
+  const err = obj as JSONError;
+  if (typeof err.error !== "string") {
+    return false;
+  }
+
+  return true;
+};
+
 const getAll = async (): Promise<CompactCardSetType[]> => {
-  try {
-    const response = await fetch(`${BASE_URL}/cardset`);
-    // TODO handle non-200 reponse?
-    const data: CompactCardSetType[] = await response.json();
+  const response = await fetch(`${BASE_URL}/cardset`);
+  const data: CompactCardSetType[] | JSONError = await response.json();
+
+  if (!response.ok || isJSONError(data)) {
+    let err = new Error(
+      "An error occured while trying to fetch the card sets."
+    );
+    if (isJSONError(data) && data.error && data.error !== "") {
+      console.log(data.error);
+      err = new Error(data.error);
+    }
+    return Promise.reject(err);
+  } else {
     return data;
-  } catch (error) {
-    // TODO, decide how to handle errors
-    return [];
   }
 };
 
 const getOne = async (id: string): Promise<CardSetType> => {
-  try {
-    const response = await fetch(`${BASE_URL}/cardset/${id}`);
-    const data: CardSetType = await response.json();
+  const response = await fetch(`${BASE_URL}/cardset/${id}`);
+  const data: CardSetType | JSONError = await response.json();
 
+  if (!response.ok || isJSONError(data)) {
+    let err = new Error("An error occured while trying to fetch the set.");
+    if (isJSONError(data) && data.error && data.error !== "") {
+      console.log(data.error);
+      err = new Error(data.error);
+    }
+    if (err.message?.match(/not found/i)) {
+      throw new Response("Not Found", { status: 404 });
+    }
+    return Promise.reject(err);
+  } else {
     return data;
-  } catch (error) {
-    // TODO
-    throw new Error("Something went wrong");
   }
 };
 
 const create = async (newCard: NewCardSetType): Promise<CardSetType> => {
-  try {
-    const response = await fetch(`${BASE_URL}/cardset/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newCard),
-    });
-    const data: CardSetType = await response.json();
+  const response = await fetch(`${BASE_URL}/cardset/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newCard),
+  });
 
+  const data: CardSetType | JSONError = await response.json();
+
+  if (!response.ok || isJSONError(data)) {
+    let err = new Error("An error occured while trying to create the set.");
+    if (isJSONError(data) && data.error && data.error !== "") {
+      console.log(data.error);
+      err = new Error(data.error);
+    }
+    return Promise.reject(err);
+  } else {
     return data;
-  } catch (error) {
-    // TODO
-    throw new Error("Something went wrong");
   }
 };
 
@@ -48,29 +83,46 @@ const update = async (
   id: string,
   updates: Partial<CardSetType>
 ): Promise<CardSetType> => {
-  try {
-    const response = await fetch(`${BASE_URL}/cardset/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updates),
-    });
-    const data: CardSetType = await response.json();
+  const response = await fetch(`${BASE_URL}/cardset/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updates),
+  });
 
+  const data: CardSetType | JSONError = await response.json();
+
+  if (!response.ok || isJSONError(data)) {
+    let err = new Error(
+      "An unknown error occured while trying to update the set."
+    );
+    if (isJSONError(data) && data.error && data.error !== "") {
+      console.log(data.error);
+      err = new Error(data.error);
+    }
+    return Promise.reject(err);
+  } else {
     return data;
-  } catch (error) {
-    throw new Error("Something went wrong");
   }
 };
 
 const deleteSet = async (id: string): Promise<void> => {
-  try {
-    await fetch(`${BASE_URL}/cardset/${id}`, {
-      method: "DELETE",
-    });
-  } catch (error) {
-    throw new Error("Something went wrong");
+  const response = await fetch(`${BASE_URL}/cardset/${id}`, {
+    method: "DELETE",
+  });
+  type JSONResponse = {
+    error?: string;
+  };
+  const { error }: JSONResponse = await response.json();
+
+  if (!response.ok) {
+    const err = new Error(
+      error && error !== ""
+        ? error
+        : "An unknown error occured while trying to delete the set."
+    );
+    return Promise.reject(err);
   }
 };
 

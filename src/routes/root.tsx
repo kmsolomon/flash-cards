@@ -7,7 +7,6 @@ import {
 import { getFlashCard } from "@/services/flashcards";
 
 export async function allCardsetsLoader() {
-  // TODO error handling
   const cardsets = await getCardSets();
   return cardsets;
 }
@@ -17,7 +16,6 @@ export async function singleCardsetLoader({
 }: {
   params: Params<"id">;
 }) {
-  // TODO error handling
   if (params && typeof params.id === "string") {
     const cardset = await getCardSet(params.id);
     return cardset;

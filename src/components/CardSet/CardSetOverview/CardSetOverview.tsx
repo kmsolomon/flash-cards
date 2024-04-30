@@ -39,10 +39,15 @@ function CardSetOverview() {
       await deleteSet(cardSet.id);
       navigate("/");
     } catch (err) {
+      let message = "";
       console.error(
-        "Something went wrong while trying to delete this card set.",
-        err
+        "Something went wrong while trying to delete this card set."
       );
+
+      if (err instanceof Error) {
+        message = err.message;
+      }
+      navigate("/error", { state: { message: message } });
     }
   };
 

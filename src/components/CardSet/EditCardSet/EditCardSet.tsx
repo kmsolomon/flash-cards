@@ -85,10 +85,14 @@ function EditCardSet() {
         }
 
         navigate(`/set/${cardSet.id}`);
-      } catch (error) {
-        //todo
-        console.error("something went wrong while creating your card set. ");
-        console.log(error);
+      } catch (err) {
+        console.error("Something went wrong while creating your card set.");
+        let message = "";
+
+        if (err instanceof Error) {
+          message = err.message;
+        }
+        navigate("/error", { state: { message: message } });
       }
     }
   };
