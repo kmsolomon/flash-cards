@@ -30,3 +30,23 @@ export type MenuOptionItems = {
   name: string;
   action: () => void;
 };
+
+export const isCardSetType = (obj: unknown): obj is CardSetType => {
+  if (obj === null || typeof obj !== "object") {
+    return false;
+  }
+
+  const cardset = obj as CardSetType;
+
+  if (typeof cardset.id !== "string") {
+    return false;
+  }
+  if (typeof cardset.title !== "string") {
+    return false;
+  }
+  if (cardset.description !== null && typeof cardset.description !== "string") {
+    return false;
+  }
+
+  return true;
+};
