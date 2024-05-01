@@ -1,6 +1,6 @@
 import "./CardSetOverview.css";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ImCogs } from "react-icons/im";
 import { useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
 
@@ -19,6 +19,7 @@ function CardSetOverview() {
   const [flashCardDeleteModalOpen, setFlashCardDeleteModalOpen] =
     useState<boolean>(false);
   const [selectedCardId, setSelectedCardId] = useState<string>("");
+  const optionButtonRef = useRef<HTMLButtonElement>(null);
   const menuOptions: MenuOptionItems[] = [
     {
       name: "Edit",
@@ -76,11 +77,19 @@ function CardSetOverview() {
     setFlashCardDeleteModalOpen(false);
   };
 
+  const handleCancelSetDelete = () => {
+    setDeleteModalOpen(false);
+    if (optionButtonRef.current) {
+      optionButtonRef.current.focus();
+    }
+  };
+
   return (
     <div className="main-content">
       <div className="set-header">
         <h1>{cardSet.title}</h1>
         <ActionMenu
+          ref={optionButtonRef}
           buttonIcon={<ImCogs />}
           ariaLabel="Set options"
           buttonType="icon"
@@ -166,7 +175,7 @@ function CardSetOverview() {
             style="secondary"
             type="button"
             text="Cancel"
-            clickHandler={() => setDeleteModalOpen(false)}
+            clickHandler={handleCancelSetDelete}
           />
         </div>
       </Modal>
