@@ -1,23 +1,12 @@
-import { CardSetType, CompactCardSetType, NewCardSetType } from "@/types";
+import {
+  CardSetType,
+  CompactCardSetType,
+  isJSONError,
+  JSONError,
+  NewCardSetType,
+} from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-type JSONError = {
-  error: string;
-};
-
-const isJSONError = (obj: unknown): obj is JSONError => {
-  if (obj === null || typeof obj !== "object") {
-    return false;
-  }
-
-  const err = obj as JSONError;
-  if (typeof err.error !== "string") {
-    return false;
-  }
-
-  return true;
-};
 
 const getAll = async (): Promise<CompactCardSetType[]> => {
   const response = await fetch(`${BASE_URL}/cardset`);
@@ -111,10 +100,8 @@ const deleteSet = async (id: string): Promise<void> => {
   const response = await fetch(`${BASE_URL}/cardset/${id}`, {
     method: "DELETE",
   });
-  type JSONResponse = {
-    error?: string;
-  };
-  const { error }: JSONResponse = await response.json();
+
+  const { error }: JSONError = await response.json();
 
   if (!response.ok) {
     const err = new Error(

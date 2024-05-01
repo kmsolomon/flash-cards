@@ -31,6 +31,23 @@ export type MenuOptionItems = {
   action: () => void;
 };
 
+export type JSONError = {
+  error: string;
+};
+
+export const isJSONError = (obj: unknown): obj is JSONError => {
+  if (obj === null || typeof obj !== "object") {
+    return false;
+  }
+
+  const err = obj as JSONError;
+  if (typeof err.error !== "string") {
+    return false;
+  }
+
+  return true;
+};
+
 export const isCardSetType = (obj: unknown): obj is CardSetType => {
   if (obj === null || typeof obj !== "object") {
     return false;

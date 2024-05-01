@@ -94,8 +94,14 @@ function EditFlashCard() {
       try {
         await updateFlashCard(id, flashCard.id, updates);
         navigate(`/set/${id}`);
-      } catch (error) {
-        console.error("something went wrong");
+      } catch (err) {
+        console.error("Something went wrong while creating your flash card.");
+        let message = "";
+
+        if (err instanceof Error) {
+          message = err.message;
+        }
+        navigate("/error", { state: { message: message } });
       }
     }
   };

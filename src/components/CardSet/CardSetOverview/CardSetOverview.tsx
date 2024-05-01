@@ -59,10 +59,15 @@ function CardSetOverview() {
       setFlashCardDeleteModalOpen(false);
       revalidator.revalidate();
     } catch (err) {
+      let message = "";
       console.error(
-        "Something went wrong while trying to delete this flash card.",
-        err
+        "Something went wrong while trying to delete this flash card."
       );
+
+      if (err instanceof Error) {
+        message = err.message;
+      }
+      navigate("/error", { state: { message: message } });
     }
   };
 
