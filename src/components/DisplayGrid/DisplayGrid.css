@@ -60,3 +60,7 @@
 .header a:hover {
   text-decoration-style: solid;
 }
+
+.content-heading {
+  margin: 0 0 1rem 0;
+}

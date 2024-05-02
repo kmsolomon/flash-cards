@@ -9,7 +9,14 @@ function DisplayGrid() {
 
   return (
     <div className="main-content">
-      <h1>Flash card sets:</h1>
+      <div className="content-heading">
+        <h1 id="top">Flash card sets</h1>
+        <div className="button-group large-btns">
+          <a className="btn primary" href={`/set/create`}>
+            Create card set
+          </a>
+        </div>
+      </div>
       <div className="display-grid" data-testid="display-grid">
         {items && items.length > 0
           ? items.map((element) => (
