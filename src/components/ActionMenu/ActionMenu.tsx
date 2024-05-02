@@ -51,9 +51,7 @@ const ActionMenu = forwardRef<HTMLButtonElement, ActionMenuProps>(
           const btnLeft = buttonRef.current.getBoundingClientRect().left;
           const btnRight = buttonRef.current.getBoundingClientRect().right;
           const menuWidth = outerMenuRef.current.clientWidth;
-          console.log(
-            `${btnLeft} ${menuWidth}, ${width} ${btnLeft - menuWidth > 0}`
-          );
+
           if (btnLeft + menuWidth > width) {
             outerMenuRef.current.style.transform = `translateX(-${
               menuWidth + btnLeft - width + (width - btnRight)
@@ -64,7 +62,7 @@ const ActionMenu = forwardRef<HTMLButtonElement, ActionMenuProps>(
         } else {
           const btnRight = buttonRef.current.getBoundingClientRect().right;
           const menuWidth = outerMenuRef.current.clientWidth;
-          console.log(`${btnRight} ${menuWidth}, ${btnRight - menuWidth > 0}`);
+
           if (btnRight - menuWidth > 0) {
             outerMenuRef.current.style.transform = "";
           } else {
