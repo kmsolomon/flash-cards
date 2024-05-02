@@ -16,6 +16,13 @@
   --light-blue: #4ec4d1;
   --dark-blue: #005c66;
   --purple: #d898ec;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion) {
+  :root {
+    scroll-behavior: auto;
+  }
 }
 
 body {

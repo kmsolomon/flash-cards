@@ -87,7 +87,7 @@ function CardSetOverview() {
   return (
     <div className="main-content">
       <div className="set-header">
-        <h1>{cardSet.title}</h1>
+        <h1 id="top">{cardSet.title}</h1>
         <ActionMenu
           ref={optionButtonRef}
           buttonIcon={<ImCogs />}
@@ -154,6 +154,9 @@ function CardSetOverview() {
             "No cards yet. Add some!"
           )}
         </div>
+      </div>
+      <div className="content-footer">
+        <a href="#top">Return to top of page</a>
       </div>
       <Modal
         id="test1"
