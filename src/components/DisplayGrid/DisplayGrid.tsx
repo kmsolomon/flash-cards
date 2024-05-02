@@ -34,6 +34,9 @@ function DisplayGrid() {
             ))
           : "There are no items to display."}
       </div>
+      <div className="content-footer">
+        <a href="#top">Return to top of page</a>
+      </div>
     </div>
   );
 }
