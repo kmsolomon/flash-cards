@@ -45,6 +45,36 @@ const ActionMenu = forwardRef<HTMLButtonElement, ActionMenuProps>(
     const [menuExpanded, setMenuExpanded] = useState<boolean>(false);
 
     useEffect(() => {
+      if (outerMenuRef.current && buttonRef.current) {
+        const width = window.innerWidth;
+        if (menuPosition === "left") {
+          const btnLeft = buttonRef.current.getBoundingClientRect().left;
+          const btnRight = buttonRef.current.getBoundingClientRect().right;
+          const menuWidth = outerMenuRef.current.clientWidth;
+          console.log(
+            `${btnLeft} ${menuWidth}, ${width} ${btnLeft - menuWidth > 0}`
+          );
+          if (btnLeft + menuWidth > width) {
+            outerMenuRef.current.style.transform = `translateX(-${
+              menuWidth + btnLeft - width + (width - btnRight)
+            }px)`;
+          } else {
+            outerMenuRef.current.style.transform = "";
+          }
+        } else {
+          const btnRight = buttonRef.current.getBoundingClientRect().right;
+          const menuWidth = outerMenuRef.current.clientWidth;
+          console.log(`${btnRight} ${menuWidth}, ${btnRight - menuWidth > 0}`);
+          if (btnRight - menuWidth > 0) {
+            outerMenuRef.current.style.transform = "";
+          } else {
+            outerMenuRef.current.style.transform = `translateX(${
+              menuWidth - btnRight
+            }px)`;
+          }
+        }
+      }
+
       const closeOpenMenu = (e: MouseEvent) => {
         if (
           menuExpanded &&
@@ -61,7 +91,7 @@ const ActionMenu = forwardRef<HTMLButtonElement, ActionMenuProps>(
       return () => {
         document.removeEventListener("mousedown", closeOpenMenu);
       };
-    }, [menuExpanded]);
+    }, [menuExpanded, menuPosition]);
 
     useImperativeHandle(ref, () => buttonRef.current!, []);
 

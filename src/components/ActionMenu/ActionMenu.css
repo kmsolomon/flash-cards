@@ -14,8 +14,14 @@
   border-radius: var(--border-radius);
   box-shadow: 1px 1px 4px 0px rgba(173, 173, 173, 0.75);
   position: absolute;
-  min-width: 200px;
+  min-width: 100px;
   z-index: 1;
+}
+
+@media screen and (min-width: 769px) {
+  .action-menu ul {
+    min-width: 200px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
