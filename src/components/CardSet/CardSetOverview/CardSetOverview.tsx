@@ -95,6 +95,7 @@ function CardSetOverview() {
           buttonType="icon"
           buttonClasses="btn primary small-icon"
           menuOptions={menuOptions}
+          menuPosition="left"
         />
       </div>
 
