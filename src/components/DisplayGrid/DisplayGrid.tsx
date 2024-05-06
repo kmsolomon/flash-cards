@@ -10,7 +10,9 @@ function DisplayGrid() {
   return (
     <div className="main-content">
       <div className="content-heading">
-        <h1 id="top">Flash card sets</h1>
+        <h1 id="top" tabIndex={-1}>
+          Flash card sets
+        </h1>
         <div className="button-group large-btns">
           <a className="btn primary" href={`/set/create`}>
             Create card set

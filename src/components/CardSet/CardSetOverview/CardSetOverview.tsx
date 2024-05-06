@@ -87,7 +87,9 @@ function CardSetOverview() {
   return (
     <div className="main-content">
       <div className="set-header">
-        <h1 id="top">{cardSet.title}</h1>
+        <h1 id="top" tabIndex={-1}>
+          {cardSet.title}
+        </h1>
         <ActionMenu
           ref={optionButtonRef}
           buttonIcon={<ImCogs />}
