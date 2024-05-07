@@ -1,11 +1,23 @@
 import "./DisplayGrid.css";
 
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 import { CompactCardSetType } from "@/types";
 
+import Button from "../Button/Button";
+
 function DisplayGrid() {
   const items = useLoaderData() as CompactCardSetType[];
+  const navigate = useNavigate();
+
+  const viewRandomSet = () => {
+    let selectedId = "";
+    if (items && items.length) {
+      const rando = Math.floor(Math.random() * items.length);
+      selectedId = items[rando].id;
+    }
+    navigate(`/set/${selectedId}`);
+  };
 
   return (
     <div className="main-content">
@@ -17,6 +29,13 @@ function DisplayGrid() {
           <a className="btn primary" href={`/set/create`}>
             Create card set
           </a>
+          {items && items.length > 1 ? (
+            <Button
+              style="secondary"
+              text="View a random set"
+              clickHandler={viewRandomSet}
+            />
+          ) : null}
         </div>
       </div>
       <div className="display-grid" data-testid="display-grid">
